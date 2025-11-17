@@ -184,6 +184,26 @@ namespace Pet_Shop.Services
             }
         }
 
+        public async Task<bool> ClearCartAsync(int userId)
+        {
+            try
+            {
+                var cartItems = await _context.Cart
+                    .Where(c => c.UserID == userId)
+                    .ToListAsync();
+
+                _context.Cart.RemoveRange(cartItems);
+                await _context.SaveChangesAsync();
+                
+                _logger.LogInformation($"Cleared cart for user {userId}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error clearing cart for user {userId}: {ex.Message}");
+                return false;
+            }
+        }
 
         public async Task<int> GetCartCountAsync(int userId)
         {
