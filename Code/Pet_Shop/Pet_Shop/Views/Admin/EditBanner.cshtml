@@ -1,0 +1,263 @@
+@model Pet_Shop.Models.Entities.Banner
+@{
+    ViewData["Title"] = "Chỉnh sửa Banner";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card admin-card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-edit me-2"></i>Chỉnh sửa Banner
+                </h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="EditBanner" method="post">
+                    <input asp-for="BannerID" type="hidden" />
+                    <input asp-for="CreatedDate" type="hidden" />
+                    
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="BannerName" class="form-label">Tên banner <span class="text-danger">*</span></label>
+                            <input asp-for="BannerName" class="form-control" placeholder="Nhập tên banner" />
+                            <span asp-validation-for="BannerName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Position" class="form-label">Vị trí banner</label>
+                            <select asp-for="Position" class="form-select">
+                                <option value="Homepage">Trang chủ</option>
+                                <option value="Category">Danh mục</option>
+                                <option value="Product">Sản phẩm</option>
+                            </select>
+                            <span asp-validation-for="Position" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="AltText" class="form-label">Mô tả</label>
+                        <textarea asp-for="AltText" class="form-control" rows="3" placeholder="Nhập mô tả cho banner"></textarea>
+                        <span asp-validation-for="AltText" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ImageURL" class="form-label">Hình ảnh banner <span class="text-danger">*</span></label>
+                        
+                        <!-- Current Image Display -->
+                        @if (!string.IsNullOrEmpty(Model.ImageURL))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">Ảnh hiện tại:</label>
+                                <img src="@Model.ImageURL" class="image-preview" alt="@Model.AltText" />
+                            </div>
+                        }
+                        
+                        <!-- Image Upload Container -->
+                        <div class="image-upload-container" id="imageUploadContainer">
+                            <div id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                <h5 class="text-muted">Kéo thả hình ảnh vào đây</h5>
+                                <p class="text-muted">hoặc</p>
+                                <button type="button" class="image-upload-btn" onclick="document.getElementById('imageFile').click()">
+                                    <i class="fas fa-upload me-2"></i>Chọn hình ảnh mới
+                                </button>
+                                <input type="file" id="imageFile" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                            </div>
+                            
+                            <!-- Image Preview -->
+                            <div id="imagePreview" style="display: none;">
+                                <img id="previewImage" class="image-preview" alt="Preview">
+                                <div class="mt-3">
+                                    <button type="button" class="image-edit-btn" onclick="document.getElementById('imageFile').click()">
+                                        <i class="fas fa-edit me-2"></i>Thay đổi
+                                    </button>
+                                    <button type="button" class="image-delete-btn" onclick="removeImage()">
+                                        <i class="fas fa-trash me-2"></i>Xóa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hidden input for ImageURL -->
+                        <input asp-for="ImageURL" type="hidden" id="imageUrlInput" />
+                        <span asp-validation-for="ImageURL" class="text-danger"></span>
+                        <div class="form-text">Hỗ trợ định dạng: JPG, PNG, GIF. Kích thước tối đa: 5MB</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="LinkURL" class="form-label">URL liên kết</label>
+                            <input asp-for="LinkURL" class="form-control" placeholder="https://example.com" />
+                            <span asp-validation-for="LinkURL" class="text-danger"></span>
+                            <div class="form-text">URL khi click vào banner</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Trạng thái</label>
+                            <div class="form-check">
+                                <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                                <label asp-for="IsActive" class="form-check-label">
+                                    Kích hoạt banner
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="SortOrder" class="form-label">Thứ tự sắp xếp</label>
+                            <input asp-for="SortOrder" type="number" class="form-control" min="0" />
+                            <span asp-validation-for="SortOrder" class="text-danger"></span>
+                            <div class="form-text">Số nhỏ hơn sẽ hiển thị trước</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="StartDate" class="form-label">Ngày bắt đầu</label>
+                            <input asp-for="StartDate" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="EndDate" class="form-label">Ngày kết thúc</label>
+                            <input asp-for="EndDate" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                            <div class="form-text">Để trống nếu không có thời hạn</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Ngày tạo</label>
+                            <input type="text" class="form-control" value="@Model.CreatedDate.ToString("dd/MM/yyyy HH:mm")" readonly />
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("Banners")" class="btn btn-admin-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Quay lại
+                        </a>
+                        <button type="submit" class="btn btn-admin-primary">
+                            <i class="fas fa-save me-2"></i>Cập nhật banner
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        // Image upload functionality
+        async function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    showWarningModal('Vui lòng chọn file hình ảnh!', 'Chỉ chấp nhận các file hình ảnh (JPG, PNG, GIF, etc.).');
+                    return;
+                }
+                
+                // Validate file size (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    showWarningModal('Kích thước file không được vượt quá 5MB!', 'Vui lòng chọn file hình ảnh nhỏ hơn.');
+                    return;
+                }
+                
+                // Show loading
+                const uploadBtn = document.querySelector('.image-upload-btn');
+                const originalText = uploadBtn.innerHTML;
+                uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang upload...';
+                uploadBtn.disabled = true;
+                
+                try {
+                    // Create FormData
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    
+                    // Upload to server
+                    const response = await fetch('/api/FileUpload/upload-image', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Show preview
+                        document.getElementById('previewImage').src = result.fileUrl;
+                        document.getElementById('uploadArea').style.display = 'none';
+                        document.getElementById('imagePreview').style.display = 'block';
+                        
+                        // Set image URL
+                        document.getElementById('imageUrlInput').value = result.fileUrl;
+                        
+                        showSuccessModal('Upload thành công!', 'Hình ảnh banner đã được upload thành công.');
+                    } else {
+                        showErrorModal('Upload thất bại: ' + result.message, 'Không thể upload hình ảnh.');
+                    }
+                } catch (error) {
+                    console.error('Upload error:', error);
+                    showErrorModal('Có lỗi xảy ra khi upload file', 'Vui lòng thử lại sau.');
+                } finally {
+                    // Restore button
+                    uploadBtn.innerHTML = originalText;
+                    uploadBtn.disabled = false;
+                }
+            }
+        }
+        
+        function removeImage() {
+            document.getElementById('imageFile').value = '';
+            document.getElementById('imageUrlInput').value = '';
+            document.getElementById('uploadArea').style.display = 'block';
+            document.getElementById('imagePreview').style.display = 'none';
+        }
+        
+        // Drag and drop functionality
+        const uploadContainer = document.getElementById('imageUploadContainer');
+        
+        uploadContainer.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadContainer.classList.add('dragover');
+        });
+        
+        uploadContainer.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            uploadContainer.classList.remove('dragover');
+        });
+        
+        uploadContainer.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadContainer.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.type.startsWith('image/')) {
+                    // Simulate file input change
+                    const event = {
+                        target: { files: [file] }
+                    };
+                    handleImageUpload(event);
+                } else {
+                    showWarningModal('Vui lòng chọn file hình ảnh!', 'Bạn cần chọn một file hình ảnh để upload.');
+                }
+            }
+        });
+        
+        // Click to upload
+        uploadContainer.addEventListener('click', function(e) {
+            if (e.target === uploadContainer || e.target.closest('#uploadArea')) {
+                document.getElementById('imageFile').click();
+            }
+        });
+    </script>
+}
