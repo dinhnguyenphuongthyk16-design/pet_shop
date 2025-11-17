@@ -1,4 +1,41 @@
 
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Addresses]') AND type IN ('U'))
+	DROP TABLE [dbo].[Addresses]
+GO
+
+CREATE TABLE [dbo].[Addresses] (
+  [AddressID] int  IDENTITY(1,1) NOT NULL,
+  [UserID] int  NOT NULL,
+  [FullName] nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [Phone] nvarchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [Address] nvarchar(200) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [Ward] nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [District] nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [City] nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [IsDefault] bit DEFAULT 0 NULL,
+  [CreatedDate] datetime DEFAULT getdate() NULL
+)
+GO
+
+ALTER TABLE [dbo].[Addresses] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of Addresses
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Addresses] ON
+GO
+
+INSERT INTO [dbo].[Addresses] ([AddressID], [UserID], [FullName], [Phone], [Address], [Ward], [District], [City], [IsDefault], [CreatedDate]) VALUES (N'1', N'1', N'Nguy?n Van A', N'0901234567', N'123 Ðu?ng ABC', N'Phu?ng 1', N'Qu?n 1', N'TP. H? Chí Minh', N'0', N'2025-10-15 21:30:37.410')
+GO
+
+INSERT INTO [dbo].[Addresses] ([AddressID], [UserID], [FullName], [Phone], [Address], [Ward], [District], [City], [IsDefault], [CreatedDate]) VALUES (N'3', N'2', N'Tr?n Th? B', N'0987654321', N'789 Ðu?ng DEF', N'Phu?ng 3', N'Qu?n 3', N'TP. H? Chí Minh', N'0', N'2025-10-15 21:30:37.410')
+GO
+
+SET IDENTITY_INSERT [dbo].[Addresses] OFF
+GO
+
 -- ----------------------------
 -- Table structure for OrderStatuses
 -- ----------------------------
@@ -198,4 +235,43 @@ INSERT INTO [dbo].[Brands] ([BrandID], [BrandName], [LogoURL], [Description], [I
 GO
 
 SET IDENTITY_INSERT [dbo].[Brands] OFF
+GO
+
+
+-- ----------------------------
+-- Table structure for CustomerProfiles
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[CustomerProfiles]') AND type IN ('U'))
+	DROP TABLE [dbo].[CustomerProfiles]
+GO
+
+CREATE TABLE [dbo].[CustomerProfiles] (
+  [ProfileID] int  IDENTITY(1,1) NOT NULL,
+  [UserID] int  NOT NULL,
+  [DateOfBirth] date  NULL,
+  [Gender] nvarchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TotalOrders] int DEFAULT 0 NULL,
+  [TotalSpent] decimal(15,2) DEFAULT 0 NULL,
+  [MembershipLevel] nvarchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT 'Bronze' NULL,
+  [Points] int DEFAULT 0 NULL
+)
+GO
+
+ALTER TABLE [dbo].[CustomerProfiles] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of CustomerProfiles
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[CustomerProfiles] ON
+GO
+
+INSERT INTO [dbo].[CustomerProfiles] ([ProfileID], [UserID], [DateOfBirth], [Gender], [TotalOrders], [TotalSpent], [MembershipLevel], [Points]) VALUES (N'1', N'1', N'2025-10-15', N'Nam', N'20', N'14700000.00', N'Bronze', N'1470')
+GO
+
+INSERT INTO [dbo].[CustomerProfiles] ([ProfileID], [UserID], [DateOfBirth], [Gender], [TotalOrders], [TotalSpent], [MembershipLevel], [Points]) VALUES (N'2', N'2', N'2025-10-09', N'Nam', N'20', N'16250000.00', N'Bronze', N'1620')
+GO
+
+SET IDENTITY_INSERT [dbo].[CustomerProfiles] OFF
 GO
