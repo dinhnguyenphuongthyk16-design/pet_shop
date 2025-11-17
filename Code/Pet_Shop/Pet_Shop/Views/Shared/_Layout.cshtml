@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HyHy Pet Shop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/all.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ai-recommendations.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Top Header Bar -->
+    <div class="top-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="logo">
+                        <i class="fas fa-dog text-warning me-2"></i>
+                        <span class="logo-text">HyHy</span>
+                        <span class="logo-subtitle">Pet Shop</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="search-bar">
+                        <form asp-controller="Search" asp-action="Index" method="get">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="q" placeholder="Search For More Than 10,000 Products" value="@ViewBag.SearchQuery">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">Phone</span>
+                            <span class="contact-value">+980-34984089</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">HyHy@Gmail.Com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="container">
+            <div class="navbar-nav me-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Shop by Category
+                    </a>
+                    <ul class="dropdown-menu">
+                        @if (ViewBag.Categories != null)
+                        {
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <li><a class="dropdown-item" href="@Url.Action("Products", "Shop", new { categoryId = category.CategoryID })">@category.CategoryName</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="navbar-nav mx-auto">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="nav-link" asp-controller="Shop" asp-action="Products">Shop</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Chính sách
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="@Url.Action("About", "Policy")">Về chúng tôi</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Contact", "Policy")">Liên hệ</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("FAQ", "Policy")">Câu hỏi thường gặp</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Privacy", "Policy")">Chính sách bảo mật</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Terms", "Policy")">Điều khoản sử dụng</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Shipping", "Policy")">Chính sách vận chuyển</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Returns", "Policy")">Chính sách đổi trả</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Sitemap", "Policy")">Sơ đồ trang web</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="navbar-nav ms-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i> @(User.FindFirst("FullName")?.Value ?? "User")
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-controller="Profile" asp-action="Index">Profile</a></li>
+                            <li><a class="dropdown-item" asp-controller="Profile" asp-action="Orders">Orders</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <a class="nav-link" asp-controller="Account" asp-action="Login">
+                        <i class="fas fa-user"></i>
+                    </a>
+                }
+                <a class="nav-link" href="@Url.Action("Index", "Wishlist")" title="Yêu thích">
+                    <i class="fas fa-heart"></i>
+                    <span id="wishlistCount" class="badge bg-danger ms-1" style="display: none;">0</span>
+                </a>
+                <a class="nav-link position-relative" asp-controller="Cart" asp-action="Index" title="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark" id="cartCount">
+                        0
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>HyHy Pet Shop</h5>
+                    <p>Chuyên cung cấp thức ăn và phụ kiện chất lượng cho thú cưng của bạn.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2024 - HyHy Pet Shop. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <script>
+        // Update cart count on page load
+        $(document).ready(function() {
+            updateCartCount();
+        });
+
+        function updateCartCount() {
+            $.ajax({
+                url: '@Url.Action("GetCartCount", "Cart")',
+                type: 'GET',
+                success: function(response) {
+                    $('#cartCount').text(response.cartCount);
+                    if (response.cartCount > 0) {
+                        $('#cartCount').show();
+                    } else {
+                        $('#cartCount').hide();
+                    }
+                },
+                error: function() {
+                    $('#cartCount').hide();
+                }
+            });
+        }
+
+        // Global function to add to cart
+        window.addToCart = function(productId, quantity = 1) {
+            $.ajax({
+                url: '@Url.Action("AddToCart", "Cart")',
+                type: 'POST',
+                data: {
+                    productId: productId,
+                    quantity: quantity
+                },
+                success: function(response) {
+                    if (response.success) {
+                        updateCartCount();
+                        showToast('Đã thêm sản phẩm vào giỏ hàng', 'success');
+                    } else {
+                        showToast(response.message, 'error');
+                    }
+                },
+                error: function() {
+                    showToast('Có lỗi xảy ra khi thêm vào giỏ hàng', 'error');
+                }
+            });
+        };
+
+        function showToast(message, type) {
+            const toastClass = type === 'success' ? 'alert-success' : 
+                              type === 'error' ? 'alert-danger' : 
+                              type === 'warning' ? 'alert-warning' : 'alert-info';
+            
+            const toast = $(`
+                <div class="alert ${toastClass} alert-dismissible fade show position-fixed" 
+                     style="top: 20px; right: 20px; z-index: 9999;">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `);
+            
+            $('body').append(toast);
+            setTimeout(() => toast.alert('close'), 3000);
+        }
+
+        // Load wishlist count
+        function loadWishlistCount() {
+            $.ajax({
+                url: '/Wishlist/GetWishlistCount',
+                type: 'GET',
+                success: function(response) {
+                    if (response.success && response.count > 0) {
+                        $('#wishlistCount').text(response.count).show();
+                    } else {
+                        $('#wishlistCount').hide();
+                    }
+                }
+            });
+        }
+
+        // Load wishlist count on page load
+        $(document).ready(function() {
+            loadWishlistCount();
+        });
+
+        // Modal utility functions for frontend
+        function showSuccessModal(message, details = '') {
+            showModal('success', message, details);
+        }
+
+        function showErrorModal(message, details = '') {
+            showModal('error', message, details);
+        }
+
+        function showWarningModal(message, details = '') {
+            showModal('warning', message, details);
+        }
+
+        function showInfoModal(message, details = '') {
+            showModal('info', message, details);
+        }
+
+        function showConfirmModal(message, details = '', onConfirm = null) {
+            showModal('confirm', message, details, onConfirm);
+        }
+
+        function showModal(type, message, details = '', onConfirm = null) {
+            const modalId = 'frontendModal';
+            let existingModal = document.getElementById(modalId);
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            const modalHtml = `
+                <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 shadow-lg">
+                            <div class="modal-header bg-${type === 'success' ? 'success' : type === 'error' ? 'danger' : type === 'warning' ? 'warning' : type === 'info' ? 'info' : 'primary'} text-white border-0">
+                                <h5 class="modal-title" id="${modalId}Label">
+                                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : type === 'info' ? 'info-circle' : 'question-circle'} me-2"></i>
+                                    ${type === 'success' ? 'Thành công' : type === 'error' ? 'Lỗi' : type === 'warning' ? 'Cảnh báo' : type === 'info' ? 'Thông tin' : 'Xác nhận'}
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center py-4">
+                                <div class="mb-3">
+                                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : type === 'info' ? 'info-circle' : 'question-circle'} fa-3x text-${type === 'success' ? 'success' : type === 'error' ? 'danger' : type === 'warning' ? 'warning' : type === 'info' ? 'info' : 'primary'}"></i>
+                                </div>
+                                <h6 class="mb-3">${message}</h6>
+                                ${details ? `<p class="text-muted mb-0">${details}</p>` : ''}
+                            </div>
+                            <div class="modal-footer border-0 justify-content-center">
+                                ${type === 'confirm' ? 
+                                    `<button type="button" class="btn btn-secondary px-4 me-2" data-bs-dismiss="modal">
+                                        <i class="fas fa-times me-2"></i>Hủy
+                                    </button>
+                                    <button type="button" class="btn btn-primary px-4" id="confirmButton">
+                                        <i class="fas fa-check me-2"></i>Xác nhận
+                                    </button>` :
+                                    `<button type="button" class="btn btn-${type === 'success' ? 'success' : type === 'error' ? 'danger' : type === 'warning' ? 'warning' : type === 'info' ? 'info' : 'primary'} px-4" data-bs-dismiss="modal">
+                                        <i class="fas fa-check me-2"></i>Đóng
+                                    </button>`
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            
+            if (type === 'confirm' && onConfirm) {
+                document.getElementById('confirmButton').onclick = function() {
+                    onConfirm();
+                    bootstrap.Modal.getInstance(document.getElementById(modalId)).hide();
+                };
+            }
+
+            new bootstrap.Modal(document.getElementById(modalId)).show();
+        }
+    </script>
+    
+    <!-- Chatbot Widget -->
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <h5 class="chatbot-title">HyHy Assistant</h5>
+                    <p class="chatbot-subtitle">Trợ lý AI thông minh</p>
+                </div>
+            </div>
+            <button class="chatbot-close" onclick="toggleChatbot()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="chatbot-welcome">
+                <h5>👋 Chào mừng bạn đến với HyHy Pet Shop!</h5>
+                <p>Tôi là trợ lý AI, có thể giúp bạn:</p>
+                <div class="chatbot-quick-actions">
+                    <button class="chatbot-quick-action" onclick="sendQuickMessage('Tôi cần thức ăn cho chó')">
+                        🐕 Thức ăn chó
+                    </button>
+                    <button class="chatbot-quick-action" onclick="sendQuickMessage('Tôi cần thức ăn cho mèo')">
+                        🐱 Thức ăn mèo
+                    </button>
+                    <button class="chatbot-quick-action" onclick="sendQuickMessage('Tôi cần phụ kiện cho thú cưng')">
+                        🎾 Phụ kiện
+                    </button>
+                    <button class="chatbot-quick-action" onclick="sendQuickMessage('Sản phẩm nào đang giảm giá?')">
+                        💰 Khuyến mãi
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chatbot-input-container">
+            <div class="chatbot-input-wrapper">
+                <textarea class="chatbot-input" id="chatbotInput" placeholder="Nhập tin nhắn của bạn..." rows="1"></textarea>
+                <button class="chatbot-send" id="chatbotSend" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chatbot functionality
+        let conversationHistory = [];
+        let isTyping = false;
+
+        function toggleChatbot() {
+            const container = document.getElementById('chatbotContainer');
+            const toggle = document.getElementById('chatbotToggle');
+            
+            if (container.classList.contains('show')) {
+                container.classList.remove('show');
+                toggle.classList.remove('active');
+            } else {
+                container.classList.add('show');
+                toggle.classList.add('active');
+                // Focus on input when opening
+                setTimeout(() => {
+                    document.getElementById('chatbotInput').focus();
+                }, 300);
+            }
+        }
+
+        function sendQuickMessage(message) {
+            document.getElementById('chatbotInput').value = message;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            
+            if (!message || isTyping) return;
+            
+            // Add user message to chat
+            addMessage(message, true);
+            input.value = '';
+            input.style.height = '40px'; // Reset height
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Send to API
+            $.ajax({
+                url: '/api/Chatbot/send-message',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    message: message,
+                    conversationHistory: JSON.stringify(conversationHistory)
+                }),
+                success: function(response) {
+                    hideTypingIndicator();
+                    
+                    if (response.success) {
+                        // Add bot response
+                        addMessage(response.message, false);
+                        
+                        // Add suggested products if any
+                        if (response.suggestedProducts && response.suggestedProducts.length > 0) {
+                            addSuggestedProducts(response.suggestedProducts);
+                        }
+                        
+                        // Update conversation history
+                        conversationHistory.push({ content: message, isUser: true, timestamp: new Date() });
+                        conversationHistory.push({ content: response.message, isUser: false, timestamp: new Date() });
+                        
+                        // Keep only last 20 messages
+                        if (conversationHistory.length > 20) {
+                            conversationHistory = conversationHistory.slice(-20);
+                        }
+                    } else {
+                        addMessage('Xin lỗi, có lỗi xảy ra. Vui lòng thử lại sau.', false);
+                    }
+                },
+                error: function() {
+                    hideTypingIndicator();
+                    addMessage('Xin lỗi, có lỗi xảy ra. Vui lòng thử lại sau.', false);
+                }
+            });
+        }
+
+        function addMessage(content, isUser) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chatbot-message ${isUser ? 'user' : 'bot'}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'chatbot-message-avatar';
+            avatar.innerHTML = isUser ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'chatbot-message-content';
+            messageContent.textContent = content;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            messagesContainer.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function addSuggestedProducts(products) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const productsDiv = document.createElement('div');
+            productsDiv.className = 'chatbot-suggested-products';
+            
+            productsDiv.innerHTML = `
+                <h6><i class="fas fa-gift"></i> Sản phẩm gợi ý</h6>
+                ${products.map(product => `
+                    <div class="chatbot-product-item" onclick="viewProduct(${product.productId})">
+                        <img src="${product.imageUrl || '/images/placeholder.jpg'}" 
+                             alt="${product.altText || product.productName}" 
+                             class="chatbot-product-image"
+                             onerror="this.src='/images/placeholder.jpg'">
+                        <div class="chatbot-product-info">
+                            <div class="chatbot-product-name">${product.productName}</div>
+                            <div class="chatbot-product-price">
+                                ${product.salePrice ? 
+                                    `${product.salePrice.toLocaleString('vi-VN')} ₫` : 
+                                    `${product.price.toLocaleString('vi-VN')} ₫`
+                                }
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+            
+            messagesContainer.appendChild(productsDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            isTyping = true;
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chatbot-message bot';
+            typingDiv.id = 'typingIndicator';
+            
+            typingDiv.innerHTML = `
+                <div class="chatbot-message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chatbot-typing">
+                    <div class="chatbot-typing-dots">
+                        <div class="chatbot-typing-dot"></div>
+                        <div class="chatbot-typing-dot"></div>
+                        <div class="chatbot-typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            isTyping = false;
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function viewProduct(productId) {
+            window.open(`/Shop/Product/${productId}`, '_blank');
+        }
+
+        // Auto-resize textarea
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('chatbotInput');
+            if (input) {
+                input.addEventListener('input', function() {
+                    this.style.height = '40px';
+                    this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+                });
+                
+                // Send message on Enter (but allow Shift+Enter for new line)
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+        });
+
+        // Close chatbot when clicking outside
+        document.addEventListener('click', function(e) {
+            const container = document.getElementById('chatbotContainer');
+            const toggle = document.getElementById('chatbotToggle');
+            
+            if (container && !container.contains(e.target) && !toggle.contains(e.target)) {
+                if (container.classList.contains('show')) {
+                    container.classList.remove('show');
+                    toggle.classList.remove('active');
+                }
+            }
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
