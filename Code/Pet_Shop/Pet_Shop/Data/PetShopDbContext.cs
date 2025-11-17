@@ -358,20 +358,7 @@ namespace Pet_Shop.Data
                 entity.Property(e => e.Position).HasMaxLength(50);
             });
 
-            // Configure ContactMessage
-            modelBuilder.Entity<ContactMessage>(entity =>
-            {
-                entity.HasKey(e => e.MessageID);
-                entity.Property(e => e.FullName).IsRequired().HasMaxLength(100);
-                entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
-                entity.Property(e => e.Subject).IsRequired().HasMaxLength(200);
-                entity.Property(e => e.Message).IsRequired().HasMaxLength(2000);
-                entity.Property(e => e.Status).HasMaxLength(20).HasDefaultValue("New");
-
-                entity.HasOne(d => d.RepliedByUser)
-                    .WithMany(p => p.ContactMessages)
-                    .HasForeignKey(d => d.RepliedBy)
-                    .OnDelete(DeleteBehavior.SetNull);
+           
             });
         }
     }
