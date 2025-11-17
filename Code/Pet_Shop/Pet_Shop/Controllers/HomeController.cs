@@ -343,6 +343,28 @@ namespace Pet_Shop.Controllers
                 return Json(new { success = false, data = Array.Empty<object>(), message = "Không thể cập nhật gợi ý AI" });
             }
         }
+
+        private async Task<List<Product>> FallbackFromClickedOrFeaturedAsync(List<string> clickedCodes, int k)
+        {
+            var exclude = new HashSet<string>(clickedCodes ?? Enumerable.Empty<string>(), StringComparer.OrdinalIgnoreCase);
+
+            var featured = (await _productService.GetFeaturedProductsAsync())
+                .Where(p => string.IsNullOrEmpty(p.ProductCode) || !exclude.Contains(p.ProductCode!))
+                .Take(k)
+                .ToList();
+
+            if (featured.Count >= k) return featured;
+
+            var need = k - featured.Count;
+            var newer = (await _productService.GetNewProductsAsync())
+                .Where(p => string.IsNullOrEmpty(p.ProductCode) || !exclude.Contains(p.ProductCode!))
+                .Take(need)
+                .ToList();
+
+            featured.AddRange(newer);
+            return featured;
+        }
+
         // =============== helpers for /GetAIRecsLive ===============
 
         public class LiveRecRequest
