@@ -107,43 +107,6 @@ namespace Pet_Shop.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Category(int id, int page = 1)
-        {
-            try
-            {
-                var category = await _categoryService.GetCategoryByIdAsync(id);
-                if (category == null)
-                {
-                    return NotFound();
-                }
-
-                ViewData["Title"] = $"Danh mục: {category.CategoryName}";
-
-                // Get products for this category
-                var products = await _productService.GetProductsByCategoryAsync(id);
-
-                // Pagination
-                const int pageSize = 12;
-                var totalItems = products.Count();
-                var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
-                products = products.Skip((page - 1) * pageSize).Take(pageSize);
-
-                ViewBag.Category = category;
-                ViewBag.Products = products;
-                ViewBag.TotalItems = totalItems;
-                ViewBag.TotalPages = totalPages;
-                ViewBag.CurrentPage = page;
-
-                return View();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error loading category {CategoryId}", id);
-                return NotFound();
-            }
-        }
 
         [HttpGet]
         public async Task<IActionResult> Product(int id)
