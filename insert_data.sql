@@ -206,3 +206,158 @@ FROM Products p
 LEFT JOIN Inventory i ON i.ProductID = p.ProductID
 WHERE i.ProductID IS NULL;
 
+/* 9) MASS-GENERATE 80 DEMO PRODUCTS (idempotent) */
+
+;WITH Tally AS (
+    SELECT 1 AS n
+    UNION ALL
+    SELECT n + 1 FROM Tally WHERE n < 80
+),
+Gen AS (
+    SELECT
+        n,
+        CASE ((n - 1) % 6)
+            WHEN 0 THEN @CatFoodDog
+            WHEN 1 THEN @CatFoodCat
+            WHEN 2 THEN @CatAccDog
+            WHEN 3 THEN @CatAccCat
+            WHEN 4 THEN @CatToy
+            WHEN 5 THEN @CatHyg
+        END AS CategoryID,
+        CASE ((n - 1) % 8)
+            WHEN 0 THEN @B_Royal
+            WHEN 1 THEN @B_Whiskas
+            WHEN 2 THEN @B_Pedigree
+            WHEN 3 THEN @B_Felix
+            WHEN 4 THEN @B_Hills
+            WHEN 5 THEN @B_Purina
+            WHEN 6 THEN @B_Orijen
+            WHEN 7 THEN @B_Acana
+        END AS BrandID,
+        CASE ((n - 1) % 6)
+            WHEN 0 THEN 'DOG-FOOD'
+            WHEN 1 THEN 'CAT-FOOD'
+            WHEN 2 THEN 'DOG-ACC'
+            WHEN 3 THEN 'CAT-ACC'
+            WHEN 4 THEN 'PET-TOY'
+            WHEN 5 THEN 'PET-HYGIENE'
+        END AS GroupCode,
+        CASE ((n - 1) % 6)
+            WHEN 0 THEN 'Food'
+            WHEN 1 THEN 'Food'
+            WHEN 2 THEN 'Accessory'
+            WHEN 3 THEN 'Accessory'
+            WHEN 4 THEN 'Accessory'
+            WHEN 5 THEN 'Accessory'
+        END AS ProductType,
+        CASE ((n - 1) % 6)
+            WHEN 0 THEN 'Dog'
+            WHEN 1 THEN 'Cat'
+            WHEN 2 THEN 'Dog'
+            WHEN 3 THEN 'Cat'
+            WHEN 4 THEN 'All'
+            WHEN 5 THEN 'All'
+        END AS PetType
+    FROM Tally
+)
+INSERT INTO Products
+(
+    ProductName, ProductCode, CategoryID, BrandID, ProductType, PetType,
+    Weight, Dimensions, ExpiryDate,
+    Description, ShortDescription,
+    Price, SalePrice, Cost,
+    IsNew, IsActive, IsFeatured
+)
+SELECT
+    /* ProductName */
+    N'Demo ' + g.GroupCode + N' ' + RIGHT('000' + CAST(g.n AS VARCHAR(3)), 3) AS ProductName,
+    /* ProductCode */
+    'DEMO-' + g.GroupCode + '-' + RIGHT('000' + CAST(g.n AS VARCHAR(3)), 3)   AS ProductCode,
+    g.CategoryID,
+    g.BrandID,
+    g.ProductType,
+    g.PetType,
+    /* Weight */
+    CASE g.GroupCode WHEN 'DOG-FOOD' THEN 2.0
+                     WHEN 'CAT-FOOD' THEN 1.5
+                     WHEN 'PET-HYGIENE' THEN 0.6
+                     WHEN 'PET-TOY' THEN 0.2
+                     WHEN 'DOG-ACC' THEN 0.8
+                     WHEN 'CAT-ACC' THEN 0.5
+                     ELSE 1.0 END AS Weight,
+    /* Dimensions */
+    CASE g.GroupCode WHEN 'DOG-FOOD' THEN '30x20x10 cm'
+                     WHEN 'CAT-FOOD' THEN '25x18x8 cm'
+                     WHEN 'PET-TOY' THEN '10x10x10 cm'
+                     WHEN 'PET-HYGIENE' THEN '22x8x5 cm'
+                     WHEN 'DOG-ACC' THEN '40x30x15 cm'
+                     WHEN 'CAT-ACC' THEN '35x25x12 cm'
+                     ELSE '25x18x8 cm' END AS Dimensions,
+    /* ExpiryDate: only for Food, otherwise NULL */
+    CASE WHEN g.ProductType = 'Food' THEN CONVERT(date, '2026-12-31') ELSE NULL END AS ExpiryDate,
+    /* Description */
+    N'Sản phẩm demo ' + g.GroupCode + N' – tự động sinh.',
+    N'SP demo ' + g.GroupCode,
+    /* Price / SalePrice / Cost: simple tiers */
+    CASE g.GroupCode WHEN 'DOG-FOOD' THEN 180000
+                     WHEN 'CAT-FOOD' THEN 160000
+                     WHEN 'DOG-ACC' THEN 220000
+                     WHEN 'CAT-ACC' THEN 200000
+                     WHEN 'PET-TOY' THEN  80000
+                     WHEN 'PET-HYGIENE' THEN 120000
+                     ELSE 150000 END AS Price,
+    CASE g.GroupCode WHEN 'DOG-FOOD' THEN 150000
+                     WHEN 'CAT-FOOD' THEN 140000
+                     WHEN 'DOG-ACC' THEN 190000
+                     WHEN 'CAT-ACC' THEN 170000
+                     WHEN 'PET-TOY' THEN  65000
+                     WHEN 'PET-HYGIENE' THEN 100000
+                     ELSE 130000 END AS SalePrice,
+    CASE g.GroupCode WHEN 'DOG-FOOD' THEN 100000
+                     WHEN 'CAT-FOOD' THEN  90000
+                     WHEN 'DOG-ACC' THEN 130000
+                     WHEN 'CAT-ACC' THEN 120000
+                     WHEN 'PET-TOY' THEN  30000
+                     WHEN 'PET-HYGIENE' THEN  60000
+                     ELSE  90000 END AS Cost,
+    /* Flags */
+    1 AS IsNew, 1 AS IsActive,
+    CASE WHEN ((g.n - 1) % 10) IN (0,1) THEN 1 ELSE 0 END AS IsFeatured
+FROM Gen g
+WHERE NOT EXISTS (
+    SELECT 1 FROM Products p
+    WHERE p.ProductCode = 'DEMO-' + g.GroupCode + '-' + RIGHT('000' + CAST(g.n AS VARCHAR(3)), 3)
+)
+OPTION (MAXRECURSION 0);
+
+/* 10) INVENTORY for new DEMO products (that still lack inventory) */
+INSERT INTO Inventory (ProductID, QuantityInStock, MinStockLevel, MaxStockLevel)
+SELECT p.ProductID, 
+       CASE WHEN p.ProductType='Food' THEN 100 ELSE 60 END AS QuantityInStock,
+       10, 
+       CASE WHEN p.ProductType='Food' THEN 300 ELSE 150 END AS MaxStockLevel
+FROM Products p
+LEFT JOIN Inventory i ON i.ProductID = p.ProductID
+WHERE i.ProductID IS NULL
+  AND p.ProductCode LIKE 'DEMO-%';
+
+/* ========== SUMMARY ========== */
+DECLARE 
+    @ProductCount   INT,
+    @InventoryCount INT;
+
+SELECT @ProductCount   = COUNT(*) FROM Products;
+SELECT @InventoryCount = COUNT(*) FROM Inventory;
+
+PRINT '==========================================';
+PRINT N'TỔNG SẢN PHẨM (Products): ' + CAST(@ProductCount AS VARCHAR(10));
+PRINT N'TỔNG DÒNG TỒN KHO (Inventory): ' + CAST(@InventoryCount AS VARCHAR(10));
+PRINT '==========================================';
+
+COMMIT TRAN;
+END TRY
+BEGIN CATCH
+    IF @@TRANCOUNT > 0 ROLLBACK TRAN;
+    DECLARE @Msg NVARCHAR(4000)=ERROR_MESSAGE(), @Line INT=ERROR_LINE(), @Num INT=ERROR_NUMBER();
+    PRINT 'SEED FAILED at line ' + CAST(@Line AS VARCHAR(10)) + ' (Err ' + CAST(@Num AS VARCHAR(10)) + '): ' + @Msg;
+END CATCH;
