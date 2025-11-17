@@ -81,3 +81,33 @@ namespace Pet_Shop.Controllers
                 });
             }
         }
+
+        [HttpPost("export-products")]
+        public async Task<IActionResult> ExportProducts()
+        {
+            try
+            {
+                var exporter = new ExportDataForML(_context);
+                var basePath = Path.Combine(_env.ContentRootPath, "..", "..", "AI_chatbot_train");
+                var outputPath = Path.Combine(basePath, "items_cvae_cbf.csv");
+
+                var result = await exporter.ExportProductsAsync(outputPath);
+
+                return Ok(new
+                {
+                    success = true,
+                    message = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = ex.Message
+                });
+            }
+        }
+    }
+}
+
