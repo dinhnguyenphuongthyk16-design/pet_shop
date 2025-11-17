@@ -145,5 +145,114 @@ namespace Pet_Shop.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Product(int id)
+        {
+            try
+            {
+                var product = await _productService.GetProductByIdAsync(id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                ViewData["Title"] = product.ProductName;
+
+                // Related products (same category)
+                var relatedProducts = await _productService.GetRelatedProductsAsync(
+                    id,
+                    product.CategoryID,
+                    4
+                );
+
+                ViewBag.Product = product;
+                ViewBag.RelatedProducts = relatedProducts;
+
+                // ==========================
+                // Detect userId from Claims
+                // ==========================
+                int? userId = null;
+                if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    var idClaim = User.FindFirst("UserId") ??
+                                  User.FindFirst(ClaimTypes.NameIdentifier);
+
+                    if (idClaim != null && int.TryParse(idClaim.Value, out var uid))
+                    {
+                        userId = uid;
+                    }
+                }
+
+                // ==========================
+                // AI Recs – mode = "user"
+                // ==========================
+                if (userId.HasValue)
+                {
+                    try
+                    {
+                        var userRecs = await _localRecommendationService
+                            .GetUserRecommendationsAsync(userId.Value, 5);
+
+                        ViewBag.UserRecommendations = userRecs;
+                    }
+                    catch (Exception recEx)
+                    {
+                        _logger.LogWarning(recEx,
+                            "Error getting user-based recommendations for user {UserId}", userId);
+                    }
+                }
+
+                // ==========================
+                // AI Recs – mode = "click"
+                // (based on this product as if it were in the cart)
+                // ==========================
+                try
+                {
+                    var clickRecs = await _localRecommendationService
+                        .GetCartBasedRecommendationsAsync(
+                            customerId: userId ?? 0,
+                            cartProductIds: new[] { product.ProductID },
+                            maxItems: 5);
+
+                    ViewBag.ClickRecommendations = clickRecs;
+                }
+                catch (Exception recEx)
+                {
+                    _logger.LogWarning(recEx,
+                        "Error getting click-based recommendations for productCode {Code}",
+                        product.ProductCode);
+                }
+
+                // ==========================
+                // AI Recs – mode = "text"
+                // ==========================
+                try
+                {
+                    var query = product.ProductName ?? string.Empty;
+                    if (product.Category != null &&
+                        !string.IsNullOrEmpty(product.Category.CategoryName))
+                    {
+                        query += " " + product.Category.CategoryName;
+                    }
+
+                    var textRecs = await _localRecommendationService
+                        .GetTextRecommendationsAsync(query, 5);
+
+                    ViewBag.TextRecommendations = textRecs;
+                }
+                catch (Exception recEx)
+                {
+                    _logger.LogWarning(recEx,
+                        "Error getting text-based recommendations for product {ProductId}", id);
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error loading product {ProductId}", id);
+                return NotFound();
+            }
+        }
     }
 }
