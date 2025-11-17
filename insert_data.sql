@@ -32,3 +32,50 @@ IF NOT EXISTS (SELECT 1 FROM OrderStatuses WHERE StatusName = 'Delivered')
     INSERT INTO OrderStatuses (StatusName, Description, SortOrder) VALUES ('Delivered', N'Đã giao hàng',   4);
 IF NOT EXISTS (SELECT 1 FROM OrderStatuses WHERE StatusName = 'Cancelled')
     INSERT INTO OrderStatuses (StatusName, Description, SortOrder) VALUES ('Cancelled', N'Đã hủy',         5);
+
+
+/* PAYMENT METHODS */
+IF NOT EXISTS (SELECT 1 FROM PaymentMethods WHERE MethodName = 'COD')
+    INSERT INTO PaymentMethods (MethodName, Description) VALUES ('COD',  N'Thanh toán khi nhận hàng');
+IF NOT EXISTS (SELECT 1 FROM PaymentMethods WHERE MethodName = 'VNPay')
+    INSERT INTO PaymentMethods (MethodName, Description) VALUES ('VNPay',N'Thanh toán qua VNPay');
+
+
+/* CATEGORIES */
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Thức ăn chó')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Thức ăn chó',  N'Các loại thức ăn dành cho chó', 1);
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Thức ăn mèo')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Thức ăn mèo',  N'Các loại thức ăn dành cho mèo', 2);
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Phụ kiện chó')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Phụ kiện chó', N'Dây dắt, chuồng, đồ chơi cho chó', 3);
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Phụ kiện mèo')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Phụ kiện mèo', N'Khay cát, vòng cổ, đồ chơi cho mèo', 4);
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Thức ăn khô')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Thức ăn khô',  N'Thức ăn khô cho thú cưng', 5);
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Thức ăn ướt')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Thức ăn ướt',  N'Thức ăn ướt cho thú cưng', 6);
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Đồ chơi')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Đồ chơi',      N'Đồ chơi cho thú cưng', 7);
+IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Vệ sinh')
+    INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Vệ sinh',      N'Sản phẩm vệ sinh cho thú cưng', 8);
+
+
+/* BRANDS */
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Royal Canin')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Royal Canin', N'Thương hiệu thức ăn cao cấp cho thú cưng');
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Whiskas')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Whiskas',     N'Thức ăn cho mèo');
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Pedigree')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Pedigree',    N'Thức ăn cho chó');
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Felix')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Felix',       N'Thức ăn ướt cho mèo');
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Hill''s')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Hill''s',     N'Thức ăn dinh dưỡng cho thú cưng');
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Purina')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Purina',      N'Thức ăn đa dạng cho thú cưng');
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Orijen')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Orijen',      N'Thức ăn cao cấp cho thú cưng');
+IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Acana')
+    INSERT INTO Brands (BrandName, Description) VALUES ('Acana',       N'Thức ăn tự nhiên cho thú cưng');
+
+
