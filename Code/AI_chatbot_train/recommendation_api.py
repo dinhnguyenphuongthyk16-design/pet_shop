@@ -1,27 +1,3 @@
-"""
-Pet Shop Recommendation API (Item-kNN + TF-IDF + Item-Only Hybrid)
-
-- Uses saved_models/ exported from offline notebook:
-    - itemknn_model.npz           (item_sim_dense, item_popularity)
-    - user_encoder.pkl            (not used in stateless API, but kept for future)
-    - item_encoder.pkl
-    - items_catalog.parquet
-    - tfidf_vectorizer.pkl
-    - X_tfidf.npz
-    - known_items.parquet
-
-3 main modes (API stays the same):
-  mode = "user"  → history-based CF using item-kNN (hybrid with item-only if history exists)
-  mode = "click" → session-based CF (hybrid with item-only if clicks exist)
-  mode = "text"  → text-based recs using TF-IDF similarity
-
-Plus:
-  - Item-only global recommender built from *all source* CSVs (tails, store, ali, chewy, amazon)
-    used as a fallback and hybrid component.
-
-ASP.NET still just calls /recommend or /recommend/batch with JSON bodies.
-"""
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -180,9 +156,7 @@ def format_recommendations(
     return out
 
 
-# =========================================================
 # Item-only recommender (all sources, no users)
-# =========================================================
 
 def _to_numeric_series(s: pd.Series, regex_keep: str = r"[0-9\.,]+") -> pd.Series:
     s = s.astype(str).str.extract(f"({regex_keep})", expand=False)
@@ -597,9 +571,8 @@ def _hybrid_merge(
     return out
 
 
-# =========================================================
 # Recommendation methods (3 modes) with hybrid logic
-# =========================================================
+
 def recommend_user_history(
     history_item_keys: List[str],
     k: int = 10
@@ -677,12 +650,7 @@ def recommend_from_text(
     text_query: str,
     k: int = 10
 ) -> List[Dict[str, Any]]:
-    """
-    Mode: 'text' – recommend items similar to a free-text description
-    using TF-IDF → cosine similarity with all known items.
 
-    (Kept as your original behaviour, no hybrid mixing.)
-    """
     global vectorizer, X_tfidf, known_items, itemid_to_row
 
     if vectorizer is None or X_tfidf is None or known_items is None:
@@ -765,14 +733,7 @@ async def on_startup():
 # API Models
 # =========================================================
 class RecommendationRequest(BaseModel):
-    """
-    Generic request for all modes.
 
-    mode:
-      - "user"  → use history_item_keys (hybrid with item-only if history exists)
-      - "click" → use clicked_item_keys (+ optional click_weights)
-      - "text"  → use text_query
-    """
     mode: str = "user"   # "user" | "click" | "text"
 
     user_id: Optional[str] = None
