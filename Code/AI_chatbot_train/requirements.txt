@@ -1,0 +1,13 @@
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+
+
+pandas
+numpy
+pyarrow
+scikit-learn
+scipy
+joblib
+
+pydantic
+python-multipart
