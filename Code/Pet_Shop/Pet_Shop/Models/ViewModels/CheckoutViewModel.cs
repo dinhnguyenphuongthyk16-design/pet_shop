@@ -41,11 +41,4 @@ namespace Pet_Shop.Models.ViewModels
         public bool AgreeToTerms { get; set; }
     }
 
-    public class MustBeTrueAttribute : ValidationAttribute
-    {
-        public override bool IsValid(object? value)
-        {
-            return value is bool boolValue && boolValue;
-        }
-    }
 }
