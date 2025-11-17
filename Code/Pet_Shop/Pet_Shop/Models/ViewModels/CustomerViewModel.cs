@@ -92,6 +92,17 @@ namespace Pet_Shop.Models.ViewModels
         public List<string> AvailableGenders { get; set; } = new List<string>();
     }
 
+    public class CustomerStatistics
+    {
+        public int TotalOrders { get; set; }
+        public decimal TotalSpent { get; set; }
+        public decimal AverageOrderValue { get; set; }
+        public int Points { get; set; }
+        public string MembershipLevel { get; set; } = string.Empty;
+        public DateTime? LastOrderDate { get; set; }
+        public int DaysSinceLastOrder { get; set; }
+    }
+
     public class CustomerSearchViewModel
     {
         public string SearchTerm { get; set; } = string.Empty;
