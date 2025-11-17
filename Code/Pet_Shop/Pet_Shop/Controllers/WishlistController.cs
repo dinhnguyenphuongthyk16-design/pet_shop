@@ -74,9 +74,8 @@ namespace Pet_Shop.Controllers
             }
         }
 
-        
         [HttpPost]
-        public async Task<IActionResult> RemoveFromWishlistByProduct(int productId)
+        public async Task<IActionResult> RemoveFromWishlist(int wishlistId)
         {
             try
             {
@@ -86,7 +85,7 @@ namespace Pet_Shop.Controllers
                     return Json(new { success = false, message = "Vui lòng đăng nhập." });
                 }
 
-                var success = await _wishlistService.RemoveFromWishlistByProductAsync(userId, productId);
+                var success = await _wishlistService.RemoveFromWishlistAsync(wishlistId, userId);
                 if (success)
                 {
                     var wishlistCount = await _wishlistService.GetWishlistCountAsync(userId);
@@ -107,6 +106,8 @@ namespace Pet_Shop.Controllers
                 return Json(new { success = false, message = "Có lỗi xảy ra khi xóa khỏi yêu thích." });
             }
         }
+
+ 
 
         [HttpGet]
         public async Task<IActionResult> IsInWishlist(int productId)
