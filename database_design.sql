@@ -684,4 +684,80 @@ SET IDENTITY_INSERT [dbo].[ProductImages] OFF
 GO
 
 
+-- ----------------------------
+-- Table structure for InventoryTransactions
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[InventoryTransactions]') AND type IN ('U'))
+	DROP TABLE [dbo].[InventoryTransactions]
+GO
+
+CREATE TABLE [dbo].[InventoryTransactions] (
+  [TransactionID] int  IDENTITY(1,1) NOT NULL,
+  [ProductID] int  NOT NULL,
+  [TransactionType] nvarchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [Quantity] int  NOT NULL,
+  [UnitPrice] decimal(15,2)  NULL,
+  [TotalValue] decimal(15,2)  NULL,
+  [ReferenceNumber] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [Notes] nvarchar(500) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [CreatedBy] int  NOT NULL,
+  [CreatedDate] datetime DEFAULT getdate() NULL
+)
+GO
+
+ALTER TABLE [dbo].[InventoryTransactions] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of InventoryTransactions
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[InventoryTransactions] ON
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'43', N'60', N'Import', N'50', N'300000.00', N'15000000.00', N'IMP-001', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'44', N'61', N'Import', N'80', N'120000.00', N'9600000.00', N'IMP-002', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'45', N'62', N'Import', N'30', N'250000.00', N'7500000.00', N'IMP-003', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'46', N'63', N'Import', N'100', N'80000.00', N'8000000.00', N'IMP-004', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'47', N'64', N'Import', N'200', N'15000.00', N'3000000.00', N'IMP-005', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'48', N'65', N'Import', N'40', N'200000.00', N'8000000.00', N'IMP-006', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'49', N'66', N'Import', N'25', N'80000.00', N'2000000.00', N'IMP-007', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'50', N'67', N'Import', N'10', N'500000.00', N'5000000.00', N'IMP-008', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'51', N'68', N'Import', N'60', N'40000.00', N'2400000.00', N'IMP-009', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'52', N'69', N'Import', N'15', N'120000.00', N'1800000.00', N'IMP-010', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'53', N'70', N'Import', N'40', N'25000.00', N'1000000.00', N'IMP-011', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'54', N'71', N'Import', N'20', N'100000.00', N'2000000.00', N'IMP-012', N'Nh?p hàng l?n d?u', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'55', N'60', N'Export', N'1', N'400000.00', N'400000.00', N'ORDER_20251015223222', N'Bán hàng', N'1', N'2025-10-15 22:32:22.557')
+GO
+
+INSERT INTO [dbo].[InventoryTransactions] ([TransactionID], [ProductID], [TransactionType], [Quantity], [UnitPrice], [TotalValue], [ReferenceNumber], [Notes], [CreatedBy], [CreatedDate]) VALUES (N'56', N'60', N'Export', N'1', N'400000.00', N'400000.00', N'ORDER_20251015223605', N'Bán hàng', N'1', N'2025-10-15 22:36:05.050')
+GO
+
+SET IDENTITY_INSERT [dbo].[InventoryTransactions] OFF
+GO
+
 
