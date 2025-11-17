@@ -161,6 +161,27 @@ namespace Pet_Shop.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetWishlistCount()
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                if (userId == 0)
+                {
+                    return Json(new { success = false, count = 0 });
+                }
+
+                var count = await _wishlistService.GetWishlistCountAsync(userId);
+                return Json(new { success = true, count = count });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error getting wishlist count: {ex.Message}");
+                return Json(new { success = false, count = 0 });
+            }
+        }
+
         private int GetCurrentUserId()
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
