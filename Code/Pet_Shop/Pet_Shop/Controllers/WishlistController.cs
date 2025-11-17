@@ -107,7 +107,38 @@ namespace Pet_Shop.Controllers
             }
         }
 
- 
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromWishlistByProduct(int productId)
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                if (userId == 0)
+                {
+                    return Json(new { success = false, message = "Vui lòng đăng nhập." });
+                }
+
+                var success = await _wishlistService.RemoveFromWishlistByProductAsync(userId, productId);
+                if (success)
+                {
+                    var wishlistCount = await _wishlistService.GetWishlistCountAsync(userId);
+                    return Json(new { 
+                        success = true, 
+                        message = "Đã xóa khỏi danh sách yêu thích",
+                        wishlistCount = wishlistCount
+                    });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Không thể xóa khỏi danh sách yêu thích." });
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error removing from wishlist: {ex.Message}");
+                return Json(new { success = false, message = "Có lỗi xảy ra khi xóa khỏi yêu thích." });
+            }
+        }
 
         [HttpGet]
         public async Task<IActionResult> IsInWishlist(int productId)
