@@ -117,5 +117,33 @@ namespace Pet_Shop.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> QuickSearch(string term)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(term))
+                {
+                    return Json(new { success = false, message = "Vui lòng nhập từ khóa tìm kiếm" });
+                }
+
+                var products = await _productService.SearchProductsAsync(term);
+                var results = products.Take(5).Select(p => new
+                {
+                    id = p.ProductID,
+                    name = p.ProductName,
+                    price = p.Price,
+                    image = p.ProductImages.FirstOrDefault()?.ImageURL ?? "/images/no-image.jpg",
+                    url = Url.Action("Details", "Product", new { id = p.ProductID })
+                });
+
+                return Json(new { success = true, results = results });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error in quick search: {ex.Message}");
+                return Json(new { success = false, message = "Có lỗi xảy ra khi tìm kiếm" });
+            }
+        }
     }
 }
