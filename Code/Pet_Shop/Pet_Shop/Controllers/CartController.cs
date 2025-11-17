@@ -73,6 +73,68 @@ namespace Pet_Shop.Controllers
             }
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateQuantity(int productId, int quantity)
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                var success = await _cartService.UpdateQuantityAsync(userId, productId, quantity);
+
+                if (success)
+                {
+                    return Json(new
+                    {
+                        success = true,
+                        message = "Đã cập nhật số lượng",
+                        newQuantity = quantity
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Không thể cập nhật số lượng. Có thể sản phẩm không còn đủ hàng."
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error updating cart quantity: {ex.Message}");
+                return Json(new { success = false, message = "Có lỗi xảy ra khi cập nhật số lượng" });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveItem(int productId)
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                var success = await _cartService.RemoveItemAsync(userId, productId);
+
+                if (success)
+                {
+                    return Json(new
+                    {
+                        success = true,
+                        message = "Đã xóa sản phẩm khỏi giỏ hàng"
+                    });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Không thể xóa sản phẩm khỏi giỏ hàng" });
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error removing cart item: {ex.Message}");
+                return Json(new { success = false, message = "Có lỗi xảy ra khi xóa sản phẩm" });
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> ClearCart()
         {
