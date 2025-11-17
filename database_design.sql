@@ -877,4 +877,465 @@ SET IDENTITY_INSERT [dbo].[Cart] OFF
 GO
 
 
+-- ----------------------------
+-- Table structure for Orders
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Orders]') AND type IN ('U'))
+	DROP TABLE [dbo].[Orders]
+GO
 
+CREATE TABLE [dbo].[Orders] (
+  [OrderID] int  IDENTITY(1,1) NOT NULL,
+  [OrderNumber] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [UserID] int  NOT NULL,
+  [OrderDate] datetime DEFAULT getdate() NULL,
+  [StatusID] int  NOT NULL,
+  [PaymentMethodID] int  NOT NULL,
+  [SubTotal] decimal(15,2)  NOT NULL,
+  [ShippingFee] decimal(15,2) DEFAULT 0 NULL,
+  [DiscountAmount] decimal(15,2) DEFAULT 0 NULL,
+  [TotalAmount] decimal(15,2)  NOT NULL,
+  [PromotionID] int  NULL,
+  [ShippingAddress] nvarchar(500) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [Notes] nvarchar(500) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [AdminNotes] nvarchar(500) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [CreatedDate] datetime DEFAULT getdate() NULL,
+  [UpdatedDate] datetime DEFAULT getdate() NULL
+)
+GO
+
+ALTER TABLE [dbo].[Orders] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of Orders
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Orders] ON
+GO
+
+INSERT INTO [dbo].[Orders] ([OrderID], [OrderNumber], [UserID], [OrderDate], [StatusID], [PaymentMethodID], [SubTotal], [ShippingFee], [DiscountAmount], [TotalAmount], [PromotionID], [ShippingAddress], [Notes], [AdminNotes], [CreatedDate], [UpdatedDate]) VALUES (N'1', N'ORD-2024-001', N'1', N'2024-01-15 10:30:00.000', N'4', N'1', N'600000.00', N'30000.00', N'0.00', N'630000.00', NULL, N'123 Ðu?ng ABC, Phu?ng 1, Qu?n 1, TP. H? Chí Minh', N'Giao hàng vào bu?i chi?u', NULL, N'2024-01-15 10:30:00.000', N'2025-10-15 21:30:37.427')
+GO
+
+INSERT INTO [dbo].[Orders] ([OrderID], [OrderNumber], [UserID], [OrderDate], [StatusID], [PaymentMethodID], [SubTotal], [ShippingFee], [DiscountAmount], [TotalAmount], [PromotionID], [ShippingAddress], [Notes], [AdminNotes], [CreatedDate], [UpdatedDate]) VALUES (N'2', N'ORD-2024-002', N'2', N'2024-01-16 14:20:00.000', N'3', N'2', N'1200000.00', N'50000.00', N'100000.00', N'1150000.00', NULL, N'789 Ðu?ng DEF, Phu?ng 3, Qu?n 3, TP. H? Chí Minh', N'Thanh toán qua VNPay', NULL, N'2024-01-16 14:20:00.000', N'2025-10-15 21:30:37.427')
+GO
+
+INSERT INTO [dbo].[Orders] ([OrderID], [OrderNumber], [UserID], [OrderDate], [StatusID], [PaymentMethodID], [SubTotal], [ShippingFee], [DiscountAmount], [TotalAmount], [PromotionID], [ShippingAddress], [Notes], [AdminNotes], [CreatedDate], [UpdatedDate]) VALUES (N'3', N'ORD-2024-003', N'1', N'2024-01-18 09:15:00.000', N'2', N'1', N'800000.00', N'40000.00', N'0.00', N'840000.00', NULL, N'123 Ðu?ng ABC, Phu?ng 1, Qu?n 1, TP. H? Chí Minh', N'C?n giao nhanh', NULL, N'2024-01-18 09:15:00.000', N'2025-10-15 21:30:37.427')
+GO
+
+INSERT INTO [dbo].[Orders] ([OrderID], [OrderNumber], [UserID], [OrderDate], [StatusID], [PaymentMethodID], [SubTotal], [ShippingFee], [DiscountAmount], [TotalAmount], [PromotionID], [ShippingAddress], [Notes], [AdminNotes], [CreatedDate], [UpdatedDate]) VALUES (N'4', N'ORD-2024-004', N'2', N'2024-01-20 16:45:00.000', N'1', N'2', N'450000.00', N'25000.00', N'0.00', N'475000.00', NULL, N'789 Ðu?ng DEF, Phu?ng 3, Qu?n 3, TP. H? Chí Minh', N'Ðon hàng m?i', NULL, N'2024-01-20 16:45:00.000', N'2025-10-15 21:30:37.427')
+GO
+
+INSERT INTO [dbo].[Orders] ([OrderID], [OrderNumber], [UserID], [OrderDate], [StatusID], [PaymentMethodID], [SubTotal], [ShippingFee], [DiscountAmount], [TotalAmount], [PromotionID], [ShippingAddress], [Notes], [AdminNotes], [CreatedDate], [UpdatedDate]) VALUES (N'13', N'PS20251015223222', N'1', N'2025-10-15 22:32:22.287', N'1', N'1', N'400000.00', N'30000.00', N'0.00', N'430000.00', NULL, N'fdf, fdf, fdf, fdfd', NULL, NULL, N'2025-10-15 22:32:22.287', N'2025-10-15 22:32:22.287')
+GO
+
+INSERT INTO [dbo].[Orders] ([OrderID], [OrderNumber], [UserID], [OrderDate], [StatusID], [PaymentMethodID], [SubTotal], [ShippingFee], [DiscountAmount], [TotalAmount], [PromotionID], [ShippingAddress], [Notes], [AdminNotes], [CreatedDate], [UpdatedDate]) VALUES (N'14', N'PS20251015223605', N'1', N'2025-10-15 22:36:05.017', N'1', N'2', N'400000.00', N'30000.00', N'0.00', N'430000.00', NULL, N'dsds, dsds, das, dsdsds', NULL, NULL, N'2025-10-15 22:36:05.017', N'2025-10-15 22:36:05.017')
+GO
+
+SET IDENTITY_INSERT [dbo].[Orders] OFF
+GO
+
+
+-- ----------------------------
+-- Table structure for OrderItems
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[OrderItems]') AND type IN ('U'))
+	DROP TABLE [dbo].[OrderItems]
+GO
+
+CREATE TABLE [dbo].[OrderItems] (
+  [OrderItemID] int  IDENTITY(1,1) NOT NULL,
+  [OrderID] int  NOT NULL,
+  [ProductID] int  NOT NULL,
+  [Quantity] int  NOT NULL,
+  [UnitPrice] decimal(15,2)  NOT NULL,
+  [TotalPrice] decimal(15,2)  NOT NULL
+)
+GO
+
+ALTER TABLE [dbo].[OrderItems] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of OrderItems
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[OrderItems] ON
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'37', N'1', N'60', N'1', N'400000.00', N'400000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'38', N'1', N'63', N'2', N'100000.00', N'200000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'39', N'2', N'61', N'2', N'150000.00', N'300000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'40', N'2', N'64', N'10', N'20000.00', N'200000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'41', N'2', N'67', N'1', N'700000.00', N'700000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'42', N'3', N'62', N'1', N'350000.00', N'350000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'43', N'3', N'66', N'2', N'120000.00', N'240000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'44', N'3', N'68', N'1', N'60000.00', N'60000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'45', N'4', N'65', N'1', N'280000.00', N'280000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'46', N'4', N'69', N'1', N'180000.00', N'180000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'47', N'13', N'60', N'1', N'400000.00', N'400000.00')
+GO
+
+INSERT INTO [dbo].[OrderItems] ([OrderItemID], [OrderID], [ProductID], [Quantity], [UnitPrice], [TotalPrice]) VALUES (N'48', N'14', N'60', N'1', N'400000.00', N'400000.00')
+GO
+
+SET IDENTITY_INSERT [dbo].[OrderItems] OFF
+GO
+
+
+-- ----------------------------
+-- Table structure for OrderStatusHistory
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[OrderStatusHistory]') AND type IN ('U'))
+	DROP TABLE [dbo].[OrderStatusHistory]
+GO
+
+CREATE TABLE [dbo].[OrderStatusHistory] (
+  [HistoryID] int  IDENTITY(1,1) NOT NULL,
+  [OrderID] int  NOT NULL,
+  [OldStatusID] int  NULL,
+  [NewStatusID] int  NOT NULL,
+  [ChangedBy] int  NOT NULL,
+  [ChangedDate] datetime DEFAULT getdate() NULL,
+  [Notes] nvarchar(500) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [dbo].[OrderStatusHistory] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of OrderStatusHistory
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[OrderStatusHistory] ON
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'1', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'2', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'3', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'4', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'5', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'6', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'7', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'8', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'9', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'10', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'11', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'12', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'13', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'14', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'15', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'16', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'17', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'18', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'19', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'20', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'21', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'22', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'23', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'24', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'25', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'26', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'27', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'28', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'29', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'30', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'31', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'32', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'33', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'34', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'35', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'36', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'37', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'38', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'39', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'40', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'41', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'42', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'43', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'44', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'45', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'46', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'47', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'48', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'49', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'50', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'51', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'52', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'53', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'54', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'55', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'56', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'57', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'58', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'59', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'60', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'61', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'62', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'63', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'64', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'65', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'66', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'67', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'68', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'69', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'70', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'71', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'72', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'73', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'74', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'75', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'76', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'77', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'78', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'79', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'80', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'81', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'82', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'83', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'84', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'85', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'86', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'87', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'88', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'89', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'90', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'91', N'1', NULL, N'1', N'1', N'2024-01-15 10:30:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'92', N'1', N'1', N'2', N'1', N'2024-01-15 11:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'93', N'1', N'2', N'3', N'1', N'2024-01-15 14:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'94', N'1', N'3', N'4', N'1', N'2024-01-15 16:30:00.000', N'Ðã giao hàng thành công')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'95', N'2', NULL, N'1', N'2', N'2024-01-16 14:20:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'96', N'2', N'1', N'2', N'1', N'2024-01-16 15:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'97', N'2', N'2', N'3', N'1', N'2024-01-17 09:00:00.000', N'Ðang giao hàng')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'98', N'3', NULL, N'1', N'1', N'2024-01-18 09:15:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'99', N'3', N'1', N'2', N'1', N'2024-01-18 10:00:00.000', N'B?t d?u x? lý')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'100', N'4', NULL, N'1', N'2', N'2024-01-20 16:45:00.000', N'Ðon hàng du?c t?o')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'101', N'13', NULL, N'1', N'1', N'2025-10-15 22:32:22.523', N'Đơn hàng được tạo')
+GO
+
+INSERT INTO [dbo].[OrderStatusHistory] ([HistoryID], [OrderID], [OldStatusID], [NewStatusID], [ChangedBy], [ChangedDate], [Notes]) VALUES (N'102', N'14', NULL, N'1', N'1', N'2025-10-15 22:36:05.040', N'Đơn hàng được tạo')
+GO
+
+SET IDENTITY_INSERT [dbo].[OrderStatusHistory] OFF
+GO
