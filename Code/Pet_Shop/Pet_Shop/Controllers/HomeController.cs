@@ -386,10 +386,24 @@ namespace Pet_Shop.Controllers
             public bool HasDiscount => SalePrice.HasValue && SalePrice.Value > 0 && SalePrice.Value < Price;
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        private LiveRecProductVm MapProductToVm(Product p)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var img = p.ProductImages?
+                .OrderByDescending(pi => pi.IsPrimary)
+                .ThenBy(pi => pi.CreatedDate)
+                .FirstOrDefault();
+
+            return new LiveRecProductVm
+            {
+                ProductID = p.ProductID,
+                ProductCode = p.ProductCode,
+                ProductName = p.ProductName,
+                ShortDescription = p.ShortDescription,
+                Price = p.Price,
+                SalePrice = p.SalePrice,
+                ImageURL = img?.ImageURL
+            };
         }
+
     }
 }
