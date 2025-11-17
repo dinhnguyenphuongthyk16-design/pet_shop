@@ -54,7 +54,68 @@ namespace Pet_Shop.Services
             }
         }
 
-       
+        public async Task<bool> AddToCartAsync(int userId, int productId, int quantity = 1)
+        {
+            try
+            {
+                // Check if product exists and is active
+                var product = await _context.Products
+                    .Include(p => p.Inventory)
+                    .FirstOrDefaultAsync(p => p.ProductID == productId && p.IsActive);
+
+                if (product == null)
+                {
+                    _logger.LogWarning($"Product {productId} not found or inactive");
+                    return false;
+                }
+
+                // Check stock availability
+                if (product.Inventory != null && product.Inventory.QuantityInStock < quantity)
+                {
+                    _logger.LogWarning($"Insufficient stock for product {productId}. Available: {product.Inventory.QuantityInStock}, Requested: {quantity}");
+                    return false;
+                }
+
+                // Check if item already exists in cart
+                var existingCartItem = await _context.Cart
+                    .FirstOrDefaultAsync(c => c.UserID == userId && c.ProductID == productId);
+
+                if (existingCartItem != null)
+                {
+                    // Update quantity
+                    existingCartItem.Quantity += quantity;
+                    
+                    // Check stock again
+                    if (product.Inventory != null && product.Inventory.QuantityInStock < existingCartItem.Quantity)
+                    {
+                        _logger.LogWarning($"Insufficient stock after update for product {productId}");
+                        return false;
+                    }
+                }
+                else
+                {
+                    // Add new item to cart
+                    var cartItem = new Cart
+                    {
+                        UserID = userId,
+                        ProductID = productId,
+                        Quantity = quantity,
+                        AddedDate = DateTime.Now
+                    };
+                    _context.Cart.Add(cartItem);
+                }
+
+                await _context.SaveChangesAsync();
+                _logger.LogInformation($"Added product {productId} to cart for user {userId}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error adding product {productId} to cart for user {userId}: {ex.Message}");
+                return false;
+            }
+        }
+
         public async Task<bool> UpdateQuantityAsync(int userId, int productId, int quantity)
         {
             try
