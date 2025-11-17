@@ -509,10 +509,7 @@ def load_item_only_models() -> bool:
 
 
 def _global_itemonly_recs(k: int = 10) -> List[Dict[str, Any]]:
-    """
-    Helper: get top-k global item-only recommendations as list[dict]
-    aligned (roughly) with your existing response format.
-    """
+
     if item_only_recsys is None or item_only_catalog is None:
         return []
 
@@ -538,10 +535,7 @@ def _hybrid_merge(
     global_recs: List[Dict[str, Any]],
     k: int
 ) -> List[Dict[str, Any]]:
-    """
-    Simple 'mixtape hybrid': start with CF recs, then fill with
-    item-only recs from all sources, deduplicating by item_key.
-    """
+
     if not global_recs:
         return cf_recs[:k]
 
@@ -577,14 +571,7 @@ def recommend_user_history(
     history_item_keys: List[str],
     k: int = 10
 ) -> List[Dict[str, Any]]:
-    """
-    Mode: 'user' – history-based recommendations using item-kNN,
-    hybrid with global item-only recommender.
 
-    Logic:
-      - If user has valid history → CF recs + item-only mixtape.
-      - If no history → pure item-only (fallback to popularity if needed).
-    """
     item_ids = keys_to_item_ids(history_item_keys)
     has_history = len(item_ids) > 0
 
@@ -617,14 +604,7 @@ def recommend_from_clicks(
     click_weights: Optional[List[float]] = None,
     k: int = 10
 ) -> List[Dict[str, Any]]:
-    """
-    Mode: 'click' – session-based recommendations from current clicks/add_to_cart/purchase,
-    hybrid with item-only recommender.
 
-    Logic:
-      - If session has valid items → CF recs + item-only mixtape.
-      - If no valid items → pure item-only (fallback to popularity).
-    """
     item_ids = keys_to_item_ids(clicked_item_keys)
     has_clicks = len(item_ids) > 0
 
@@ -676,9 +656,9 @@ def recommend_from_text(
     return format_recommendations(top_idx, scores_full)
 
 
-# =========================================================
+# 
 # Load models at startup
-# =========================================================
+# 
 def load_models() -> bool:
     global item_sim_dense, item_popularity
     global user_encoder, item_encoder, items_catalog
@@ -729,9 +709,9 @@ async def on_startup():
     print(f"Startup status → CF: {cf_ok}, Item-only: {item_only_ok}")
 
 
-# =========================================================
+# 
 # API Models
-# =========================================================
+# 
 class RecommendationRequest(BaseModel):
 
     mode: str = "user"   # "user" | "click" | "text"
@@ -753,9 +733,9 @@ class RecommendationResponse(BaseModel):
     message: str
 
 
-# =========================================================
+# 
 # Endpoints (unchanged from your API surface)
-# =========================================================
+# 
 @app.get("/")
 async def root():
     return {"message": "Pet Shop Recommendation API (Item-kNN + Content + Hybrid)",
@@ -774,12 +754,6 @@ async def health():
 
 @app.post("/recommend", response_model=RecommendationResponse)
 async def recommend(request: RecommendationRequest):
-    """
-    Main recommendation endpoint.
-
-    Same contract as before; internals now detect history/clicks and mix with
-    item-only global recs when available.
-    """
     if item_sim_dense is None:
         raise HTTPException(status_code=503, detail="Models not loaded")
 
