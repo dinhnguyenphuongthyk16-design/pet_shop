@@ -73,6 +73,39 @@ namespace Pet_Shop.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                var success = await _cartService.AddToCartAsync(userId, productId, quantity);
+
+                if (success)
+                {
+                    var cartCount = await _cartService.GetCartCountAsync(userId);
+                    return Json(new
+                    {
+                        success = true,
+                        message = "Đã thêm sản phẩm vào giỏ hàng",
+                        cartCount = cartCount
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Không thể thêm sản phẩm vào giỏ hàng. Có thể sản phẩm không còn hàng."
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error adding to cart: {ex.Message}");
+                return Json(new { success = false, message = "Có lỗi xảy ra khi thêm vào giỏ hàng" });
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> UpdateQuantity(int productId, int quantity)
