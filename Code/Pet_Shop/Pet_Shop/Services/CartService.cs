@@ -55,6 +55,48 @@ namespace Pet_Shop.Services
         }
 
        
+        public async Task<bool> UpdateQuantityAsync(int userId, int productId, int quantity)
+        {
+            try
+            {
+                if (quantity <= 0)
+                {
+                    return await RemoveItemAsync(userId, productId);
+                }
+
+                var cartItem = await _context.Cart
+                    .FirstOrDefaultAsync(c => c.UserID == userId && c.ProductID == productId);
+
+                if (cartItem == null)
+                {
+                    _logger.LogWarning($"Cart item not found for user {userId}, product {productId}");
+                    return false;
+                }
+
+                // Check stock availability
+                var product = await _context.Products
+                    .Include(p => p.Inventory)
+                    .FirstOrDefaultAsync(p => p.ProductID == productId);
+
+                if (product?.Inventory != null && product.Inventory.QuantityInStock < quantity)
+                {
+                    _logger.LogWarning($"Insufficient stock for product {productId}. Available: {product.Inventory.QuantityInStock}, Requested: {quantity}");
+                    return false;
+                }
+
+                cartItem.Quantity = quantity;
+                await _context.SaveChangesAsync();
+                
+                _logger.LogInformation($"Updated quantity for product {productId} in cart for user {userId} to {quantity}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error updating quantity for product {productId} in cart for user {userId}: {ex.Message}");
+                return false;
+            }
+        }
+
         public async Task<bool> RemoveItemAsync(int userId, int productId)
         {
             try
