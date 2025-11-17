@@ -402,3 +402,286 @@ GO
 SET IDENTITY_INSERT [dbo].[ContactMessages] OFF
 GO
 
+
+-- ----------------------------
+-- Table structure for Banners
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Banners]') AND type IN ('U'))
+	DROP TABLE [dbo].[Banners]
+GO
+
+CREATE TABLE [dbo].[Banners] (
+  [BannerID] int  IDENTITY(1,1) NOT NULL,
+  [BannerName] nvarchar(200) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [ImageURL] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [LinkURL] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [AltText] nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [Position] nvarchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SortOrder] int DEFAULT 0 NULL,
+  [StartDate] datetime  NULL,
+  [EndDate] datetime  NULL,
+  [IsActive] bit DEFAULT 1 NULL,
+  [CreatedDate] datetime DEFAULT getdate() NULL
+)
+GO
+
+ALTER TABLE [dbo].[Banners] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of Banners
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Banners] ON
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'1', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:37.430')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'2', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:37.430')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'3', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:37.430')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'4', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:37.430')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'5', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:37.430')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'6', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:45.050')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'7', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:45.050')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'8', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:45.050')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'9', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:45.050')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'10', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:45.050')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'11', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:57.333')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'12', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:57.333')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'13', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:57.333')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'14', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:57.333')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'15', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:30:57.333')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'16', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:31:38.490')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'17', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:31:38.490')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'18', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:31:38.490')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'19', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:31:38.490')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'20', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:31:38.490')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'21', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:03.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'22', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:03.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'23', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:03.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'24', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:03.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'25', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:03.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'26', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:17.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'27', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:17.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'28', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:17.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'29', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:17.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'30', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:33:17.030')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'31', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:37:29.933')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'32', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:37:29.933')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'33', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:37:29.933')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'34', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:37:29.933')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'35', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:37:29.933')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'36', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:38:44.063')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'37', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:38:44.063')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'38', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:38:44.063')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'39', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:38:44.063')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'40', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:38:44.063')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'41', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:17.823')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'42', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:17.823')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'43', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:17.823')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'44', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:17.823')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'45', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:17.823')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'46', N'Banner chính trang ch?', N'/images/banners/homepage-banner-1.jpg', N'/products', N'Khuy?n mãi th?c an thú cung', N'Homepage', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:57.663')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'47', N'Banner s?n ph?m m?i', N'/images/banners/new-products-banner.jpg', N'/products?filter=new', N'S?n ph?m m?i cho thú cung', N'Homepage', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:57.663')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'48', N'Banner khuy?n mãi', N'/images/banners/promotion-banner.jpg', N'/promotions', N'Gi?m giá lên d?n 50%', N'Homepage', N'3', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:57.663')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'49', N'Banner th?c an chó', N'/images/banners/dog-food-banner.jpg', N'/category/1', N'Th?c an cho chó', N'Category', N'1', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:57.663')
+GO
+
+INSERT INTO [dbo].[Banners] ([BannerID], [BannerName], [ImageURL], [LinkURL], [AltText], [Position], [SortOrder], [StartDate], [EndDate], [IsActive], [CreatedDate]) VALUES (N'50', N'Banner th?c an mèo', N'/images/banners/cat-food-banner.jpg', N'/category/2', N'Th?c an cho mèo', N'Category', N'2', N'2024-01-01 00:00:00.000', N'2024-12-31 00:00:00.000', N'0', N'2025-10-15 21:39:57.663')
+GO
+
+SET IDENTITY_INSERT [dbo].[Banners] OFF
+GO
+
+
+-- ----------------------------
+-- Table structure for ProductImages
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ProductImages]') AND type IN ('U'))
+	DROP TABLE [dbo].[ProductImages]
+GO
+
+CREATE TABLE [dbo].[ProductImages] (
+  [ImageID] int  IDENTITY(1,1) NOT NULL,
+  [ProductID] int  NOT NULL,
+  [ImageURL] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [AltText] nvarchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [IsPrimary] bit DEFAULT 0 NULL,
+  [SortOrder] int DEFAULT 0 NULL,
+  [CreatedDate] datetime DEFAULT getdate() NULL
+)
+GO
+
+ALTER TABLE [dbo].[ProductImages] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Records of ProductImages
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[ProductImages] ON
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'70', N'60', N'/images/products/royal-canin-adult-1.jpg', N'Royal Canin Adult - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'71', N'60', N'/images/products/royal-canin-adult-2.jpg', N'Royal Canin Adult - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'72', N'60', N'/images/products/royal-canin-adult-3.jpg', N'Royal Canin Adult - Hình ph?', N'0', N'3', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'73', N'61', N'/images/products/pedigree-adult-1.jpg', N'Pedigree Adult - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'74', N'61', N'/images/products/pedigree-adult-2.jpg', N'Pedigree Adult - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'75', N'62', N'/images/products/hills-science-1.jpg', N'Hill''s Science Diet - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'76', N'62', N'/images/products/hills-science-2.jpg', N'Hill''s Science Diet - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'77', N'63', N'/images/products/whiskas-adult-1.jpg', N'Whiskas Adult - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'78', N'63', N'/images/products/whiskas-adult-2.jpg', N'Whiskas Adult - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'79', N'64', N'/images/products/felix-wet-1.jpg', N'Felix Wet Food - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'80', N'65', N'/images/products/royal-canin-kitten-1.jpg', N'Royal Canin Kitten - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'81', N'65', N'/images/products/royal-canin-kitten-2.jpg', N'Royal Canin Kitten - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'82', N'66', N'/images/products/dog-leash-1.jpg', N'Dây d?t chó - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'83', N'67', N'/images/products/dog-cage-1.jpg', N'Chu?ng chó - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'84', N'67', N'/images/products/dog-cage-2.jpg', N'Chu?ng chó - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'85', N'68', N'/images/products/dog-bowl-1.jpg', N'Bát an chó - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'86', N'69', N'/images/products/cat-litter-1.jpg', N'Khay cát mèo - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'87', N'69', N'/images/products/cat-litter-2.jpg', N'Khay cát mèo - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'88', N'70', N'/images/products/cat-collar-1.jpg', N'Vòng c? mèo - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'89', N'71', N'/images/products/cat-scratch-1.jpg', N'C?t mài vu?t mèo - Hình chính', N'0', N'1', N'2025-10-15 21:39:57.660')
+GO
+
+INSERT INTO [dbo].[ProductImages] ([ImageID], [ProductID], [ImageURL], [AltText], [IsPrimary], [SortOrder], [CreatedDate]) VALUES (N'90', N'71', N'/images/products/cat-scratch-2.jpg', N'C?t mài vu?t mèo - Hình ph?', N'0', N'2', N'2025-10-15 21:39:57.660')
+GO
+
+SET IDENTITY_INSERT [dbo].[ProductImages] OFF
+GO
+
+
+
