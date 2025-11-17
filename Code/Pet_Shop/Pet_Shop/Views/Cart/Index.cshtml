@@ -164,35 +164,7 @@
                     </div>
                 </div>
 
-                <!-- Cart Summary -->
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h6 class="card-title">
-                            <i class="fas fa-info-circle me-2"></i>
-                            Thông tin bổ sung
-                        </h6>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Mã giảm giá</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Nhập mã giảm giá" id="promoCode">
-                                        <button class="btn btn-outline-primary" type="button" onclick="applyPromoCode()">
-                                            Áp dụng
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Ghi chú đơn hàng</label>
-                                    <textarea class="form-control" rows="2" placeholder="Ghi chú cho đơn hàng (tùy chọn)"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+        
                 @* Gợi ý từ AI theo giỏ hàng *@
                 @if (cartRecommendations != null && cartRecommendations.Any())
                 {
