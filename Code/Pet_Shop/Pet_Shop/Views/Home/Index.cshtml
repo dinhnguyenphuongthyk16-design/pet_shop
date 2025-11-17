@@ -1,0 +1,690 @@
+﻿@using System.Security.Claims
+@using Pet_Shop.Models.Entities
+@{
+    ViewData["Title"] = "Home";
+
+    var banners = ViewBag.Banners as IEnumerable<Banner>;
+    var aiRecs = ViewBag.AIRecommendedProducts as IEnumerable<Product>;
+    var featuredProducts = ViewBag.FeaturedProducts as IEnumerable<Product>;
+    var categories = ViewBag.Categories as IEnumerable<Category>;
+
+    // 🔐 per-user key
+    var currentUserId = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "guest";
+
+    // 🔍 DEBUG variables
+    var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
+    var userName = User?.Identity?.Name ?? "(null)";
+    var aiRecsCount = aiRecs?.Count() ?? 0;
+    var aiRecIds = aiRecs != null ? aiRecs.Select(p => p.ProductID).ToList() : new List<int>();
+    var aiRecCodes = aiRecs != null ? aiRecs.Select(p => p.ProductCode ?? "(null)").ToList() : new List<string>();
+}
+
+<!-- 🔍 DEBUG PANEL FOR HOME -->
+<div class="container mt-3">
+    <div class="alert alert-secondary small" style="font-size: 0.8rem;">
+        <strong>DEBUG HOME PAGE (AI Recommendations)</strong><br />
+        • Server time: <strong>@DateTime.Now</strong><br />
+        • User authenticated: <strong>@isAuthenticated</strong><br />
+        • User.Identity.Name: <strong>@userName</strong><br />
+        • UserId (claim): <strong>@currentUserId</strong><br />
+        • ViewBag.AIRecommendedProducts is null: <strong>@(aiRecs == null)</strong><br />
+        • aiRecs.Count(): <strong>@aiRecsCount</strong><br />
+        • Condition <code>aiRecs != null && aiRecs.Any()</code> =
+        <strong>@((aiRecs != null && aiRecs.Any()) ? "TRUE (section will show)" : "FALSE (section hidden)")</strong><br />
+        @if (aiRecs != null && aiRecs.Any())
+        {
+            <span>• Product IDs: </span><strong>@string.Join(", ", aiRecIds)</strong><br />
+            <span>• Product Codes: </span><strong>@string.Join(", ", aiRecCodes)</strong>
+        }
+        else
+        {
+            <span>• No AI products to display (list is null or empty).</span>
+        }
+    </div>
+</div>
+<!-- END DEBUG PANEL -->
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        @if (banners != null && banners.Any())
+        {
+            var bannerList = banners.ToList();
+            <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    @for (int i = 0; i < bannerList.Count; i++)
+                    {
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="@i"
+                                class="@(i == 0 ? "active" : "")" aria-current="@(i == 0 ? "true" : "false")"
+                                aria-label="Slide @(i + 1)"></button>
+                    }
+                </div>
+                <div class="carousel-inner">
+                    @for (int i = 0; i < bannerList.Count; i++)
+                    {
+                        var banner = bannerList[i];
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <div class="hero-content">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <div class="hero-text fade-in-up">
+                                            <div class="discount-badge">SAVE 10 - 20 % OFF</div>
+                                            <h1>@Html.Raw(banner.BannerName.Replace("\n", "<br>"))</h1>
+                                            <p class="lead">Chuyên cung cấp thức ăn và phụ kiện chất lượng cao cho thú cưng của bạn. Với hơn 10,000 sản phẩm từ các thương hiệu uy tín.</p>
+                                            @if (!string.IsNullOrEmpty(banner.LinkURL))
+                                            {
+                                                <a href="@banner.LinkURL" class="shop-btn">SHOP NOW <i class="fas fa-arrow-right ms-2"></i></a>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="hero-image fade-in-up">
+                                            <img src="@banner.ImageURL" alt="@banner.BannerName" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="hero-content">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="hero-text fade-in-up">
+                            <div class="discount-badge">SAVE 10 - 20 % OFF</div>
+                            <h1>Best Destination<br>For <span class="highlight">Your Pets</span></h1>
+                            <p class="lead">Chuyên cung cấp thức ăn và phụ kiện chất lượng cao cho thú cưng của bạn. Với hơn 10,000 sản phẩm từ các thương hiệu uy tín.</p>
+                            <a href="@Url.Action("Products", "Shop")" class="shop-btn">SHOP NOW <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-image fade-in-up">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=80" alt="Happy Dog with Toy" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- AI Chatbot Recommendations (always present so JS can fill it) -->
+<section id="aiRecsSection" class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display:block;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <div class="ai-badge mb-3">
+                    <span class="badge bg-warning text-dark px-4 py-2 fs-6 pulse-animation">
+                        <i class="fas fa-robot me-2"></i>AI CHATBOT GỢI Ý
+                    </span>
+                </div>
+                <h2 class="display-5 fw-bold text-white">Sản Phẩm Dành Riêng Cho Bạn</h2>
+                <p class="lead text-white-50">
+                    <i class="fas fa-brain me-2"></i>Được phân tích bởi AI chatbot dựa trên lịch sử mua hàng của bạn
+                </p>
+                <p class="text-white-50 small mt-2">DEBUG: Rendering @aiRecsCount AI recommendations for user <strong>@userName</strong>.</p>
+            </div>
+        </div>
+
+        <!-- GRID that can be replaced live -->
+        <div id="aiRecsGrid" class="row">
+            @if (aiRecs != null && aiRecs.Any())
+            {
+                foreach (var product in aiRecs)
+                {
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card product-card h-100 shadow-lg border-0 ai-product-card">
+                            <div class="position-relative">
+                                @if (product.ProductImages != null && product.ProductImages.Count > 0)
+                                {
+                                    var image = product.ProductImages.OrderByDescending(pi => pi.IsPrimary).ThenBy(pi => pi.CreatedDate).First();
+                                    <img src="@image.ImageURL" class="card-img-top" alt="@image.AltText" style="height:200px;object-fit:cover;">
+                                }
+                                else
+                                {
+                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height:200px;">
+                                        <i class="fas fa-image fa-3x text-muted"></i>
+                                    </div>
+                                }
+                                <div class="position-absolute top-0 start-0 m-2">
+                                    <span class="badge bg-success"><i class="fas fa-robot me-1"></i>AI Gợi ý</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-dark">@product.ProductName</h5>
+                                <p class="card-text text-muted small">@product.ShortDescription</p>
+                                <p class="text-white-50 small mb-2">
+                                    DEBUG: ProductID=@product.ProductID, ProductCode=@(product.ProductCode ?? "(null)")
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        @{
+                                            var sp = product.SalePrice;
+                                            var hasDiscount = sp.HasValue && sp.Value > 0 && sp.Value < product.Price;
+                                        }
+                                        @if (hasDiscount)
+                                        {
+                                            <div>
+                                                <span class="text-danger fw-bold fs-5">@sp.Value.ToString("N0") ₫</span>
+                                                <small class="text-muted text-decoration-line-through d-block">@product.Price.ToString("N0") ₫</small>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span class="fw-bold text-primary fs-5">@product.Price.ToString("N0") ₫</span>
+                                        }
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <a href="/Shop/Product/@product.ProductID"
+                                           class="btn btn-outline-light btn-sm flex-fill view-product-btn"
+                                           data-product-code="@(product.ProductCode ?? "")">
+                                            <i class="fas fa-eye me-1"></i>Xem
+                                        </a>
+                                        <button type="button" class="btn btn-warning btn-sm add-to-cart-btn"
+                                                data-product-id="@product.ProductID"
+                                                data-product-code="@(product.ProductCode ?? "")">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-light btn-sm wishlist-btn"
+                                                data-product-id="@product.ProductID" title="Thêm vào yêu thích">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark">Sản phẩm nổi bật</h2>
+                <p class="lead text-muted">Những sản phẩm được yêu thích nhất</p>
+            </div>
+        </div>
+        <div class="row">
+            @if (featuredProducts != null && featuredProducts.Any())
+            {
+                foreach (var product in featuredProducts)
+                {
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card product-card h-100">
+                            @if (product.ProductImages != null && product.ProductImages.Count > 0)
+                            {
+                                var image = product.ProductImages.OrderByDescending(pi => pi.IsPrimary).ThenBy(pi => pi.CreatedDate).First();
+                                <img src="@image.ImageURL" class="card-img-top" alt="@image.AltText" style="height:200px;object-fit:cover;">
+                            }
+                            else
+                            {
+                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height:200px;">
+                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                </div>
+                            }
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">@product.ProductName</h5>
+                                <p class="card-text">@product.ShortDescription</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        @{
+                                            decimal? featuredSalePrice = product.SalePrice;
+                                            bool featuredHasDiscount = featuredSalePrice.HasValue && featuredSalePrice.Value > 0 && featuredSalePrice.Value < product.Price;
+                                        }
+                                        @if (featuredHasDiscount)
+                                        {
+                                            <div>
+                                                <span class="text-danger fw-bold">@featuredSalePrice.Value.ToString("N0") ₫</span>
+                                                <small class="text-muted text-decoration-line-through">@product.Price.ToString("N0") ₫</small>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span class="fw-bold">@product.Price.ToString("N0") ₫</span>
+                                        }
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <a href="/Shop/Product/@product.ProductID" class="btn btn-outline-primary btn-sm flex-fill view-product-btn"
+                                           data-product-code="@(product.ProductCode ?? "")">Xem chi tiết</a>
+                                        <button type="button" class="btn btn-primary btn-sm add-to-cart-btn"
+                                                data-product-id="@product.ProductID"
+                                                data-product-code="@(product.ProductCode ?? "")">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm wishlist-btn"
+                                                data-product-id="@product.ProductID" title="Thêm vào yêu thích">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark">Danh mục sản phẩm</h2>
+                <p class="lead text-muted">Tìm kiếm theo loại thú cưng</p>
+            </div>
+        </div>
+        <div class="row">
+            @if (categories != null && categories.Any())
+            {
+                foreach (var category in categories)
+                {
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card text-center border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                @{
+                                    var iconClass = category.CategoryName.ToLower() switch
+                                    {
+                                        var name when name.Contains("chó") => "fas fa-dog",
+                                        var name when name.Contains("mèo") => "fas fa-cat",
+                                        var name when name.Contains("phụ kiện") => "fas fa-bone",
+                                        _ => "fas fa-paw"
+                                    };
+                                }
+                                <i class="@iconClass fa-3x text-warning mb-3"></i>
+                                <h5 class="card-title">@category.CategoryName</h5>
+                                <p class="card-text">@(category.Description ?? "Sản phẩm chất lượng cao")</p>
+                                <a href="@Url.Action("Products", "Shop", new { categoryId = category.CategoryID })" class="btn btn-outline-warning">Xem sản phẩm</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Promotion Popup -->
+<div id="promotionPopup" class="promotion-popup-overlay">
+    <div class="promotion-popup">
+        <div class="promotion-popup-header">
+            <button class="promotion-popup-close" onclick="closePromotionPopup()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="promotion-popup-title"><i class="fas fa-gift me-2"></i>Mã Khuyến Mãi Đặc Biệt</h3>
+            <p class="promotion-popup-subtitle">Những ưu đãi hấp dẫn đang chờ bạn!</p>
+        </div>
+        <div class="promotion-popup-body" id="promotionPopupBody"></div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+// ======================= USER-SCOPED STORAGE KEYS =======================
+const CURRENT_USER_ID = '@currentUserId';
+const RECENT_CLICKS_KEY = `recentClicks_${CURRENT_USER_ID}`;
+const PROMO_SHOWN_KEY  = `promotionPopupShown_${CURRENT_USER_ID}`;
+const RECENT_CLICKS_MAX = 10;
+
+function getRecentClicks() {
+    try { return JSON.parse(localStorage.getItem(RECENT_CLICKS_KEY) || '[]'); }
+    catch { return []; }
+}
+function saveRecentClicks(arr) {
+    localStorage.setItem(RECENT_CLICKS_KEY, JSON.stringify(arr));
+}
+function pushRecentClick(code) {
+    if (!code) return;
+    let arr = getRecentClicks().filter(x => x !== code);
+    arr.unshift(code);
+    if (arr.length > RECENT_CLICKS_MAX) arr = arr.slice(0, RECENT_CLICKS_MAX);
+    saveRecentClicks(arr);
+    console.log("DEBUG HOME: recentClicks =", arr);
+}
+
+// ======================= LIVE AI REFRESH =======================
+let aiRefreshTimer = null;
+let lastRenderedCodes = [];
+
+function queueRefreshAIRecs() {
+    if (aiRefreshTimer) clearTimeout(aiRefreshTimer);
+    aiRefreshTimer = setTimeout(refreshAIRecsLive, 300);
+}
+
+function vnd(n) {
+    try { return Number(n).toLocaleString('vi-VN'); } catch { return n; }
+}
+
+function normalizeItem(p) {
+    return {
+        productId: p.productID ?? p.productId ?? p.id,
+        productCode: p.productCode ?? p.code,
+        productName: p.productName ?? p.name,
+        shortDescription: p.shortDescription ?? p.description ?? '',
+        price: p.price,
+        salePrice: p.salePrice ?? p.sale_price,
+        imageUrl: p.imageURL ?? p.imageUrl ?? p.image
+    };
+}
+
+function renderAIGrid(itemsRaw) {
+    const $grid = $('#aiRecsGrid');
+    const $section = $('#aiRecsSection');
+    $grid.empty();
+
+    const items = (itemsRaw || []).map(normalizeItem);
+
+    if (!items.length) {
+        $grid.append('<div class="col-12 text-center text-white-50 py-4">Chưa có gợi ý mới.</div>');
+        $section.show();
+        return;
+    }
+
+    // If codes identical to last render, rotate to create freshness
+    const codes = items.map(x => x.productCode || '');
+    if (codes.length && JSON.stringify(codes) === JSON.stringify(lastRenderedCodes)) {
+        items.push(items.shift());
+    }
+    lastRenderedCodes = items.map(x => x.productCode || '');
+
+    items.forEach(p => {
+        const hasDiscount = !!(p.salePrice && p.salePrice > 0 && p.salePrice < p.price);
+        const priceHtml = hasDiscount
+            ? `<div>
+                 <span class="text-danger fw-bold fs-5">${vnd(p.salePrice)} ₫</span>
+                 <small class="text-muted text-decoration-line-through d-block">${vnd(p.price)} ₫</small>
+               </div>`
+            : `<span class="fw-bold text-primary fs-5">${vnd(p.price)} ₫</span>`;
+
+        const imgHtml = p.imageUrl
+            ? `<img src="${p.imageUrl}" class="card-img-top" alt="${p.productName || ''}" style="height:200px;object-fit:cover;">`
+            : `<div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height:200px;">
+                 <i class="fas fa-image fa-3x text-muted"></i>
+               </div>`;
+
+        const card = `
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card product-card h-100 shadow-lg border-0 ai-product-card">
+            <div class="position-relative">
+              ${imgHtml}
+              <div class="position-absolute top-0 start-0 m-2">
+                <span class="badge bg-success"><i class="fas fa-robot me-1"></i>AI Gợi ý</span>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-dark">${p.productName ?? ''}</h5>
+              <p class="card-text text-muted small">${p.shortDescription ?? ''}</p>
+              <p class="text-white-50 small mb-2">DEBUG: ProductID=${p.productId}, ProductCode=${p.productCode ?? ''}</p>
+              <div class="mt-auto">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  ${priceHtml}
+                </div>
+                <div class="d-flex gap-2">
+                  <a href="/Shop/Product/${p.productId}" class="btn btn-outline-light btn-sm flex-fill view-product-btn"
+                     data-product-code="${p.productCode ?? ''}">
+                    <i class="fas fa-eye me-1"></i>Xem
+                  </a>
+                  <button type="button" class="btn btn-warning btn-sm add-to-cart-btn"
+                          data-product-id="${p.productId}"
+                          data-product-code="${p.productCode ?? ''}">
+                    <i class="fas fa-shopping-cart"></i>
+                  </button>
+                  <button type="button" class="btn btn-outline-light btn-sm wishlist-btn"
+                          data-product-id="${p.productId}" title="Thêm vào yêu thích">
+                    <i class="fas fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+        $grid.append(card);
+    });
+
+    $section.show();
+}
+
+function refreshAIRecsLive() {
+    const clicks = getRecentClicks();
+    console.log("DEBUG HOME: refreshAIRecsLive with", clicks);
+
+    $.ajax({
+        url: '/Home/GetAIRecsLive',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ ClickedCodes: clicks, K: 8 }),
+        success: function (res) {
+            console.log("DEBUG HOME: GetAIRecsLive response", res);
+            if (res && res.success) {
+                const items = Array.isArray(res.data) ? res.data : [];
+                renderAIGrid(items);
+                if (items.length) showToast('success', 'Gợi ý đã cập nhật theo hoạt động của bạn');
+            } else {
+                console.warn("DEBUG HOME: AI refresh failed", res?.message);
+                renderAIGrid([]); // keep visible with placeholder
+            }
+        },
+        error: function (xhr) {
+            console.error("DEBUG HOME: GetAIRecsLive error", xhr?.responseText);
+            renderAIGrid([]);
+        }
+    });
+}
+
+// ======================= PAGE WIRING =======================
+$(document).ready(function () {
+    console.log("DEBUG HOME: page loaded");
+    console.log("DEBUG HOME: aiRecsCount from server (rendered in DOM): @aiRecsCount");
+
+    // Promotion popup
+    checkAndShowPromotionPopup();
+
+    // If we have stored clicks, refresh immediately so first load isn't static
+    const stored = getRecentClicks();
+    if (stored && stored.length) {
+        queueRefreshAIRecs();
+    }
+
+    // Delegated handlers so they work after re-render
+    $(document).on('click', '.view-product-btn', function () {
+        const code = $(this).data('product-code');
+        console.log("DEBUG HOME: view clicked →", code);
+        if (code) {
+            pushRecentClick(code);
+            queueRefreshAIRecs();
+        }
+    });
+
+    $(document).on('click', '.add-to-cart-btn', function () {
+        var productId = $(this).data('product-id');
+        var code = $(this).data('product-code') || '';
+        var $btn = $(this);
+        var originalHtml = $btn.html();
+
+        console.log("DEBUG HOME: add-to-cart clicked, productId =", productId, "code =", code);
+        if (code) pushRecentClick(code);
+
+        $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
+
+        $.ajax({
+            url: '/Cart/AddToCart',
+            type: 'POST',
+            data: { productId: productId, quantity: 1 },
+            success: function (response) {
+                console.log("DEBUG HOME: AddToCart response", response);
+                if (response.success) {
+                    showToast('success', response.message);
+                    if (response.cartCount !== undefined) {
+                        $('#cartCount').text(response.cartCount);
+                        if (response.cartCount > 0) { $('#cartCount').show(); } else { $('#cartCount').hide(); }
+                    }
+                    queueRefreshAIRecs();
+                } else {
+                    showToast('error', response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("DEBUG HOME: AddToCart error", error);
+                showToast('error', 'Có lỗi xảy ra khi thêm vào giỏ hàng');
+            },
+            complete: function () {
+                $btn.prop('disabled', false).html(originalHtml);
+            }
+        });
+    });
+
+    $(document).on('click', '.wishlist-btn', function () {
+        var productId = $(this).data('product-id');
+        var $btn = $(this);
+        var originalHtml = $btn.html();
+
+        console.log("DEBUG HOME: wishlist clicked, productId =", productId);
+
+        $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
+
+        $.ajax({
+            url: '/Wishlist/AddToWishlist',
+            type: 'POST',
+            data: { productId: productId },
+            success: function (response) {
+                console.log("DEBUG HOME: AddToWishlist response", response);
+                if (response.success) {
+                    $btn.removeClass('btn-outline-danger').addClass('btn-danger')
+                        .html('<i class="fas fa-heart"></i>').attr('title', 'Đã thêm vào yêu thích');
+                    showToast('success', response.message);
+                } else {
+                    showToast('error', response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("DEBUG HOME: AddToWishlist error", error);
+                showToast('error', 'Có lỗi xảy ra khi thêm vào yêu thích');
+            },
+            complete: function () {
+                $btn.prop('disabled', false).html(originalHtml);
+            }
+        });
+    });
+});
+
+// ======================= TOAST & PROMO =======================
+function showToast(type, message) {
+    var cls = (type === 'success') ? 'success' : (type === 'warning') ? 'warning' : 'danger';
+    var icon = (type === 'success') ? 'check-circle' : 'exclamation-circle';
+    var toastHtml = `
+        <div class="toast align-items-center text-white bg-${cls} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body">
+              <i class="fas fa-${icon} me-2"></i>${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        </div>`;
+
+    if ($('#toastContainer').length === 0) {
+        $('body').append('<div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3" style="z-index:9999;"></div>');
+    }
+
+    $('#toastContainer').append(toastHtml);
+    var toastElement = $('#toastContainer .toast').last();
+    var toast = new bootstrap.Toast(toastElement[0]);
+    toast.show();
+    toastElement.on('hidden.bs.toast', function () { $(this).remove(); });
+}
+
+function checkAndShowPromotionPopup() {
+    if (sessionStorage.getItem(PROMO_SHOWN_KEY) === 'true') {
+        console.log("DEBUG HOME: promotion popup already shown for this user/session");
+        return;
+    }
+    console.log("DEBUG HOME: loading active promotions via /Home/GetActivePromotions");
+    $.ajax({
+        url: '/Home/GetActivePromotions',
+        type: 'GET',
+        success: function (response) {
+            console.log("DEBUG HOME: GetActivePromotions response", response);
+            if (response.success && response.data && response.data.length > 0) {
+                loadPromotionPopup(response.data);
+                showPromotionPopup();
+                sessionStorage.setItem(PROMO_SHOWN_KEY, 'true');
+            } else {
+                loadPromotionPopup([]);
+            }
+        },
+        error: function () { console.log('Error loading promotions'); }
+    });
+}
+function loadPromotionPopup(promotions) {
+    var popupBody = $('#promotionPopupBody');
+    popupBody.empty();
+    if (!promotions || promotions.length === 0) {
+        popupBody.html(`
+            <div class="promotion-empty">
+                <i class="fas fa-gift"></i>
+                <h4>Không có mã khuyến mãi</h4>
+                <p>Hiện tại chưa có mã khuyến mãi nào đang hoạt động</p>
+            </div>`);
+        return;
+    }
+    promotions.forEach(function (promotion) {
+        var discountText = (promotion.discountType === 'Percentage')
+            ? `Giảm ${promotion.discountValue}%`
+            : `Giảm ${Number(promotion.discountValue).toLocaleString('vi-VN')} ₫`;
+        var minOrderText = promotion.minOrderAmount > 0
+            ? `Đơn tối thiểu ${Number(promotion.minOrderAmount).toLocaleString('vi-VN')} ₫`
+            : 'Không giới hạn';
+        var usageText = promotion.usageLimit
+            ? `Còn ${(promotion.usageLimit - (promotion.usedCount || 0))} lượt`
+            : 'Không giới hạn lượt';
+        var cardHtml = `
+            <div class="promotion-card">
+                <div class="promotion-code">${promotion.promotionCode}</div>
+                <div class="promotion-name">${promotion.promotionName}</div>
+                <div class="promotion-description">${promotion.description || 'Mã khuyến mãi đặc biệt'}</div>
+                <div class="promotion-details">
+                    <div class="promotion-discount">${discountText}</div>
+                    <div class="promotion-min-order">${minOrderText}</div>
+                    <button class="promotion-copy-btn" onclick="copyPromotionCode('${promotion.promotionCode}', this)">
+                        <i class="fas fa-copy"></i> Sao chép mã
+                    </button>
+                </div>
+                <div style="font-size:0.8rem;color:#7f8c8d;margin-top:8px;">
+                    <i class="fas fa-clock"></i> ${usageText}
+                </div>
+            </div>`;
+        popupBody.append(cardHtml);
+    });
+}
+function showPromotionPopup() { $('#promotionPopup').addClass('show'); $('body').css('overflow', 'hidden'); }
+function closePromotionPopup() { $('#promotionPopup').removeClass('show'); $('body').css('overflow', ''); }
+function copyPromotionCode(code, button) {
+    navigator.clipboard.writeText(code).then(function () {
+        var $btn = $(button);
+        var originalText = $btn.html();
+        $btn.addClass('copied').html('<i class="fas fa-check"></i> Đã sao chép');
+        setTimeout(function () { $btn.removeClass('copied').html(originalText); }, 2000);
+        showToast('success', 'Đã sao chép mã khuyến mãi: ' + code);
+    }).catch(function () { showToast('error', 'Không thể sao chép mã khuyến mãi'); });
+}
+$(document).on('click', '#promotionPopup', function (e) { if (e.target === this) closePromotionPopup(); });
+$(document).on('keydown', function (e) { if (e.key === 'Escape' && $('#promotionPopup').hasClass('show')) closePromotionPopup(); });
+</script>
+}
