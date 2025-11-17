@@ -1,0 +1,169 @@
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/appsettings.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.staticwebassets.runtime.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.exe
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.deps.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.runtimeconfig.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.pdb
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/AutoMapper.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Azure.Core.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Azure.Identity.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Humanizer.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Bcl.AsyncInterfaces.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Data.SqlClient.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Identity.Client.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Identity.Client.Extensions.Msal.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.SqlServer.Server.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Mono.TextTemplating.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Newtonsoft.Json.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/OpenAI_API.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.CodeDom.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Configuration.ConfigurationManager.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Drawing.Common.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Memory.Data.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Runtime.Caching.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Security.Cryptography.ProtectedData.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Security.Permissions.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Windows.Extensions.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.csproj.AssemblyReference.cache
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.GeneratedMSBuildEditorConfig.editorconfig
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.AssemblyInfoInputs.cache
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.AssemblyInfo.cs
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.csproj.CoreCompileInputs.cache
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.MvcApplicationPartsAssemblyInfo.cache
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.RazorAssemblyInfo.cache
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.RazorAssemblyInfo.cs
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.sourcelink.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets.build.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets.development.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.Pet_Shop.Microsoft.AspNetCore.StaticWebAssets.props
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.build.Pet_Shop.props
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Pet_Shop.props
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Pet_Shop.props
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets.pack.json
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/scopedcss/bundle/Pet_Shop.styles.css
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/scopedcss/projectbundle/Pet_Shop.bundle.scp.css
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.csproj.Up2Date
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/refint/Pet_Shop.dll
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.pdb
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.genruntimeconfig.cache
+D:/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/ref/Pet_Shop.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/appsettings.json
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.staticwebassets.runtime.json
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.deps.json
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.runtimeconfig.json
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Pet_Shop.pdb
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/AutoMapper.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Azure.Core.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Azure.Identity.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Humanizer.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Bcl.AsyncInterfaces.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Data.SqlClient.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Identity.Client.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.SqlServer.Server.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Mono.TextTemplating.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/Newtonsoft.Json.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/OpenAI_API.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.CodeDom.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Configuration.ConfigurationManager.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Drawing.Common.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Memory.Data.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Runtime.Caching.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Security.Cryptography.ProtectedData.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Security.Permissions.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/System.Windows.Extensions.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.csproj.AssemblyReference.cache
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.AssemblyInfoInputs.cache
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.AssemblyInfo.cs
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.csproj.CoreCompileInputs.cache
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.MvcApplicationPartsAssemblyInfo.cache
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.RazorAssemblyInfo.cache
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.RazorAssemblyInfo.cs
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets.build.json
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets.development.json
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.Pet_Shop.Microsoft.AspNetCore.StaticWebAssets.props
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.build.Pet_Shop.props
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Pet_Shop.props
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Pet_Shop.props
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/staticwebassets.pack.json
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/scopedcss/bundle/Pet_Shop.styles.css
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/scopedcss/projectbundle/Pet_Shop.bundle.scp.css
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.csproj.Up2Date
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/refint/Pet_Shop.dll
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.pdb
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/Pet_Shop.genruntimeconfig.cache
+/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/ref/Pet_Shop.dll

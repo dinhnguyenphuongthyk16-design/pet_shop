@@ -1,0 +1,137 @@
+[
+  {
+    "ContainingType": "Pet_Shop.Controllers.ChatbotController",
+    "Method": "GetChatbotInfo",
+    "RelativePath": "api/Chatbot/info",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.ChatbotController",
+    "Method": "GetPopularProducts",
+    "RelativePath": "api/Chatbot/popular-products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.ChatbotController",
+    "Method": "SearchProducts",
+    "RelativePath": "api/Chatbot/search-products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.ChatbotController",
+    "Method": "SendMessage",
+    "RelativePath": "api/Chatbot/send-message",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Pet_Shop.Controllers.ChatbotRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.ExportDataController",
+    "Method": "ExportAll",
+    "RelativePath": "api/ExportData/export-all",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.ExportDataController",
+    "Method": "ExportInteractions",
+    "RelativePath": "api/ExportData/export-interactions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.ExportDataController",
+    "Method": "ExportProducts",
+    "RelativePath": "api/ExportData/export-products",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.FileUploadController",
+    "Method": "DeleteImage",
+    "RelativePath": "api/FileUpload/delete-image",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Pet_Shop.Controllers.DeleteImageRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.FileUploadController",
+    "Method": "UploadImage",
+    "RelativePath": "api/FileUpload/upload-image",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pet_Shop.Controllers.FileUploadController",
+    "Method": "UploadProductImages",
+    "RelativePath": "api/FileUpload/upload-product-images",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "files",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

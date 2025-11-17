@@ -1,0 +1,413 @@
+{
+  "Files": [
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/obj/Debug/net7.0/scopedcss/projectbundle/Pet_Shop.bundle.scp.css",
+      "PackagePath": "staticwebassets/Pet_Shop.bundle.scp.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/css/ai-recommendations.css",
+      "PackagePath": "staticwebassets/css/ai-recommendations.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/css/all.css",
+      "PackagePath": "staticwebassets/css/all.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/24b9d335-1071-431c-889a-59168e0bd569.jpeg",
+      "PackagePath": "staticwebassets/uploads/banners/24b9d335-1071-431c-889a-59168e0bd569.jpeg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/590a474f-7a22-4a5b-94e9-4dbf3d9d52bb.png",
+      "PackagePath": "staticwebassets/uploads/banners/590a474f-7a22-4a5b-94e9-4dbf3d9d52bb.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/a7dfd9cf-e754-4422-bf3c-6febf0f83232.png",
+      "PackagePath": "staticwebassets/uploads/banners/a7dfd9cf-e754-4422-bf3c-6febf0f83232.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/d12516ce-4043-4ae1-bcbb-41ad0214df1e.png",
+      "PackagePath": "staticwebassets/uploads/banners/d12516ce-4043-4ae1-bcbb-41ad0214df1e.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/d408a061-efa6-4384-bac3-2d76c44e03ff.jpg",
+      "PackagePath": "staticwebassets/uploads/banners/d408a061-efa6-4384-bac3-2d76c44e03ff.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/dd5b200d-72d0-448c-a715-aeef9ecfb6c7.png",
+      "PackagePath": "staticwebassets/uploads/banners/dd5b200d-72d0-448c-a715-aeef9ecfb6c7.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/efe2cfea-44f8-4624-b115-2440a5713870.png",
+      "PackagePath": "staticwebassets/uploads/banners/efe2cfea-44f8-4624-b115-2440a5713870.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/f4342db6-3c45-4cdf-bed9-68889fd3fe64.png",
+      "PackagePath": "staticwebassets/uploads/banners/f4342db6-3c45-4cdf-bed9-68889fd3fe64.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/banners/f4c1e9f4-b707-4792-a548-999f2dfe6bb6.jpeg",
+      "PackagePath": "staticwebassets/uploads/banners/f4c1e9f4-b707-4792-a548-999f2dfe6bb6.jpeg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/0644746c-d2c8-45e9-9523-9f0734f12205.jpg",
+      "PackagePath": "staticwebassets/uploads/products/0644746c-d2c8-45e9-9523-9f0734f12205.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/14acdf8f-e85f-49dc-a71b-dc7963d3d6ca.jpg",
+      "PackagePath": "staticwebassets/uploads/products/14acdf8f-e85f-49dc-a71b-dc7963d3d6ca.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/26452555-39d3-4e60-a3d1-c0cc16dea51e.jpg",
+      "PackagePath": "staticwebassets/uploads/products/26452555-39d3-4e60-a3d1-c0cc16dea51e.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/34693459-a588-4a33-bf6d-a20cb4fe8d1c.png",
+      "PackagePath": "staticwebassets/uploads/products/34693459-a588-4a33-bf6d-a20cb4fe8d1c.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/380c22a6-1f88-4c38-82e1-ba14bcd93229.jpeg",
+      "PackagePath": "staticwebassets/uploads/products/380c22a6-1f88-4c38-82e1-ba14bcd93229.jpeg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/3b2b5840-31de-4cf8-af4c-ee2a52fa30ef.jpg",
+      "PackagePath": "staticwebassets/uploads/products/3b2b5840-31de-4cf8-af4c-ee2a52fa30ef.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/52ada6a2-472d-4018-a154-6a184ad6ac88.jpg",
+      "PackagePath": "staticwebassets/uploads/products/52ada6a2-472d-4018-a154-6a184ad6ac88.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/555948e8-e5eb-400a-9f32-94229f8721cc.png",
+      "PackagePath": "staticwebassets/uploads/products/555948e8-e5eb-400a-9f32-94229f8721cc.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/655f0d7e-a4b6-44ea-aee0-7c5b0b10c6c4.jpg",
+      "PackagePath": "staticwebassets/uploads/products/655f0d7e-a4b6-44ea-aee0-7c5b0b10c6c4.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/663beafe-3830-4051-a333-7460944a6a80.png",
+      "PackagePath": "staticwebassets/uploads/products/663beafe-3830-4051-a333-7460944a6a80.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/685217e1-65cc-4d01-973e-7f8e6f481d0a.jpg",
+      "PackagePath": "staticwebassets/uploads/products/685217e1-65cc-4d01-973e-7f8e6f481d0a.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/7c22c760-fa8e-4bd8-b073-a547cc647eaa.jpg",
+      "PackagePath": "staticwebassets/uploads/products/7c22c760-fa8e-4bd8-b073-a547cc647eaa.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/8746ed6e-6896-4200-a780-d5fe234af1ed.jpg",
+      "PackagePath": "staticwebassets/uploads/products/8746ed6e-6896-4200-a780-d5fe234af1ed.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/92850fb5-50fd-46ef-b135-be0152fdaff3.jpg",
+      "PackagePath": "staticwebassets/uploads/products/92850fb5-50fd-46ef-b135-be0152fdaff3.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/a2b680f7-4f0d-44f8-a09b-bfc441dc5999.png",
+      "PackagePath": "staticwebassets/uploads/products/a2b680f7-4f0d-44f8-a09b-bfc441dc5999.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/b6892663-85cb-42fd-af59-cba9a0be8988.jpg",
+      "PackagePath": "staticwebassets/uploads/products/b6892663-85cb-42fd-af59-cba9a0be8988.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/b85b2438-0feb-4918-8055-b668b48927e0.png",
+      "PackagePath": "staticwebassets/uploads/products/b85b2438-0feb-4918-8055-b668b48927e0.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/b8df6e89-9e7a-4c4b-a6c4-013ed274c6c9.jpg",
+      "PackagePath": "staticwebassets/uploads/products/b8df6e89-9e7a-4c4b-a6c4-013ed274c6c9.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/bb3a663a-af94-4f6f-9cd3-df2a8450f50a.png",
+      "PackagePath": "staticwebassets/uploads/products/bb3a663a-af94-4f6f-9cd3-df2a8450f50a.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/c52d1ad4-be13-4382-ab97-14be870b891f.jpg",
+      "PackagePath": "staticwebassets/uploads/products/c52d1ad4-be13-4382-ab97-14be870b891f.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/cca42a96-2181-4da4-b7b2-9d8356ed1ff2.jpg",
+      "PackagePath": "staticwebassets/uploads/products/cca42a96-2181-4da4-b7b2-9d8356ed1ff2.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/d4115fb5-2445-4535-b173-a703ada70175.jpg",
+      "PackagePath": "staticwebassets/uploads/products/d4115fb5-2445-4535-b173-a703ada70175.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/db149321-d840-4b05-823c-72afecc732ab.jpg",
+      "PackagePath": "staticwebassets/uploads/products/db149321-d840-4b05-823c-72afecc732ab.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/e75974fd-ddbd-4fb7-a7f9-00747b7ab43a.png",
+      "PackagePath": "staticwebassets/uploads/products/e75974fd-ddbd-4fb7-a7f9-00747b7ab43a.png"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/e75f730b-c1f1-4861-92c8-9604009d6ee4.jpg",
+      "PackagePath": "staticwebassets/uploads/products/e75f730b-c1f1-4861-92c8-9604009d6ee4.jpg"
+    },
+    {
+      "Id": "/mnt/c/Users/18521/Downloads/PET SHOP/PET SHOP/Code/Pet_Shop/Pet_Shop/wwwroot/uploads/products/ee2835a3-1014-4f8a-9b21-aae580addaf2.jpg",
+      "PackagePath": "staticwebassets/uploads/products/ee2835a3-1014-4f8a-9b21-aae580addaf2.jpg"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Pet_Shop.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.Pet_Shop.props",
+      "PackagePath": "build\\Pet_Shop.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Pet_Shop.props",
+      "PackagePath": "buildMultiTargeting\\Pet_Shop.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Pet_Shop.props",
+      "PackagePath": "buildTransitive\\Pet_Shop.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
