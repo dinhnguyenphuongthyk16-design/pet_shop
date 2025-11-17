@@ -21,7 +21,15 @@ BEGIN TRAN;
 -- SELECT TOP 0 * FROM Inventory;
 */
 
-/* ORDER STATUSES */
+/* 1) USER ROLES */
+IF NOT EXISTS (SELECT 1 FROM UserRoles WHERE RoleName = 'Admin')
+    INSERT INTO UserRoles (RoleName, Description) VALUES ('Admin', N'Quản trị viên hệ thống');
+IF NOT EXISTS (SELECT 1 FROM UserRoles WHERE RoleName = 'Employee')
+    INSERT INTO UserRoles (RoleName, Description) VALUES ('Employee', N'Nhân viên cửa hàng');
+IF NOT EXISTS (SELECT 1 FROM UserRoles WHERE RoleName = 'Customer')
+    INSERT INTO UserRoles (RoleName, Description) VALUES ('Customer', N'Khách hàng');
+
+/* 2) ORDER STATUSES */
 IF NOT EXISTS (SELECT 1 FROM OrderStatuses WHERE StatusName = 'New')
     INSERT INTO OrderStatuses (StatusName, Description, SortOrder) VALUES ('New',       N'Đơn hàng mới',   1);
 IF NOT EXISTS (SELECT 1 FROM OrderStatuses WHERE StatusName = 'Processing')
@@ -33,15 +41,13 @@ IF NOT EXISTS (SELECT 1 FROM OrderStatuses WHERE StatusName = 'Delivered')
 IF NOT EXISTS (SELECT 1 FROM OrderStatuses WHERE StatusName = 'Cancelled')
     INSERT INTO OrderStatuses (StatusName, Description, SortOrder) VALUES ('Cancelled', N'Đã hủy',         5);
 
-
-/* PAYMENT METHODS */
+/* 3) PAYMENT METHODS */
 IF NOT EXISTS (SELECT 1 FROM PaymentMethods WHERE MethodName = 'COD')
     INSERT INTO PaymentMethods (MethodName, Description) VALUES ('COD',  N'Thanh toán khi nhận hàng');
 IF NOT EXISTS (SELECT 1 FROM PaymentMethods WHERE MethodName = 'VNPay')
     INSERT INTO PaymentMethods (MethodName, Description) VALUES ('VNPay',N'Thanh toán qua VNPay');
 
-
-/* CATEGORIES */
+/* 4) CATEGORIES */
 IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Thức ăn chó')
     INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Thức ăn chó',  N'Các loại thức ăn dành cho chó', 1);
 IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Thức ăn mèo')
@@ -59,8 +65,7 @@ IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Đồ chơi')
 IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryName = N'Vệ sinh')
     INSERT INTO Categories (CategoryName, Description, SortOrder) VALUES (N'Vệ sinh',      N'Sản phẩm vệ sinh cho thú cưng', 8);
 
-
-/* BRANDS */
+/* 5) BRANDS */
 IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Royal Canin')
     INSERT INTO Brands (BrandName, Description) VALUES ('Royal Canin', N'Thương hiệu thức ăn cao cấp cho thú cưng');
 IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Whiskas')
@@ -78,4 +83,19 @@ IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Orijen')
 IF NOT EXISTS (SELECT 1 FROM Brands WHERE BrandName = 'Acana')
     INSERT INTO Brands (BrandName, Description) VALUES ('Acana',       N'Thức ăn tự nhiên cho thú cưng');
 
+/* === Lookups for IDs === */
+DECLARE @CatFoodDog INT = (SELECT CategoryID FROM Categories WHERE CategoryName=N'Thức ăn chó');
+DECLARE @CatFoodCat INT = (SELECT CategoryID FROM Categories WHERE CategoryName=N'Thức ăn mèo');
+DECLARE @CatAccDog  INT = (SELECT CategoryID FROM Categories WHERE CategoryName=N'Phụ kiện chó');
+DECLARE @CatAccCat  INT = (SELECT CategoryID FROM Categories WHERE CategoryName=N'Phụ kiện mèo');
+DECLARE @CatToy     INT = (SELECT CategoryID FROM Categories WHERE CategoryName=N'Đồ chơi');
+DECLARE @CatHyg     INT = (SELECT CategoryID FROM Categories WHERE CategoryName=N'Vệ sinh');
 
+DECLARE @B_Royal    INT = (SELECT BrandID FROM Brands WHERE BrandName='Royal Canin');
+DECLARE @B_Whiskas  INT = (SELECT BrandID FROM Brands WHERE BrandName='Whiskas');
+DECLARE @B_Pedigree INT = (SELECT BrandID FROM Brands WHERE BrandName='Pedigree');
+DECLARE @B_Felix    INT = (SELECT BrandID FROM Brands WHERE BrandName='Felix');
+DECLARE @B_Hills    INT = (SELECT BrandID FROM Brands WHERE BrandName='Hill''s');
+DECLARE @B_Purina   INT = (SELECT BrandID FROM Brands WHERE BrandName='Purina');
+DECLARE @B_Orijen   INT = (SELECT BrandID FROM Brands WHERE BrandName='Orijen');
+DECLARE @B_Acana    INT = (SELECT BrandID FROM Brands WHERE BrandName='Acana');
